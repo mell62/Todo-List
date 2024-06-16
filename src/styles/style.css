@@ -12,9 +12,10 @@ body {
 }
 
 #content {
+  min-height: 100vh;
   display: grid;
   grid-template-rows: 8rem 1fr;
-  grid-template-columns: 8rem 1fr;
+  grid-template-columns: 10rem 1fr;
 }
 
 .hero {
@@ -23,4 +24,14 @@ body {
 
 .hero-heading {
   font-size: 1.5rem;
+}
+
+.taskbar {
+  grid-area: 1 / 1 / -1 / 2;
+  background-color: var(--tertiary);
+}
+
+.tasks {
+  grid-area: 2 / 2 / -1 / -1;
+  background-color: var(--secondary);
 }
