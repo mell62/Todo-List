@@ -1,0 +1,26 @@
+:root {
+  --background: #fffffe;
+  --heading: #272343;
+  --text: #2d334a;
+  --primary: #ffd803;
+  --secondary: #e3f6f5;
+  --tertiary: #bae8e8;
+}
+
+body {
+  background-color: var(--background);
+}
+
+#content {
+  display: grid;
+  grid-template-rows: 8rem 1fr;
+  grid-template-columns: 8rem 1fr;
+}
+
+.hero {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.hero-heading {
+  font-size: 1.5rem;
+}
