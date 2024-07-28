@@ -1,1 +1,6 @@
-export { addtask } from "./components/tasks.js";
+export { renderTasks } from "./components/user-interface.js";
+export {
+  taskFactory,
+  taskLibrary,
+  addTask,
+} from "./components/task-library.js";
