@@ -1,7 +1,5 @@
 import "./styles/style.css";
 import "./styles/modern-normalize.css";
-import { addtask } from "./barrel";
+import { renderTasks } from "./barrel";
 
-const addTaskBtn = document.querySelector(".add-task");
-
-addTaskBtn.addEventListener("click", addtask);
+renderTasks();
