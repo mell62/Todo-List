@@ -11,11 +11,19 @@ function createDeleteBtn() {
 }
 
 function renderTasks() {
+  cleanTasks();
   taskLibrary.forEach((item) => {
     const taskElement = document.createElement("div");
     taskElement.textContent = item.taskTitle;
     taskElement.appendChild(createDeleteBtn());
     taskElement.classList.toggle("task");
     tasksContainer.appendChild(taskElement);
+  });
+}
+
+function cleanTasks() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    tasksContainer.removeChild(task);
   });
 }
