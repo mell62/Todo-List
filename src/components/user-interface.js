@@ -13,11 +13,7 @@ function createDeleteBtn() {
 function renderTasks() {
   cleanTasks();
   taskLibrary.forEach((item) => {
-    const taskElement = document.createElement("div");
-    taskElement.textContent = item.taskTitle;
-    taskElement.appendChild(createDeleteBtn());
-    taskElement.classList.toggle("task");
-    tasksContainer.appendChild(taskElement);
+    createTask(item);
   });
 }
 
@@ -32,4 +28,15 @@ function deleteTask(deleteBtn) {
   const deleteBtns = document.querySelectorAll(".delete-btn");
   const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, deleteBtn);
   removeTask(deleteBtnIndex);
+}
+
+function createTask(item) {
+  const taskElement = document.createElement("div");
+  const task = document.createElement("input");
+  task.setAttribute("value", item.taskTitle);
+  taskElement.appendChild(task);
+  taskElement.appendChild(createDeleteBtn());
+  taskElement.classList.toggle("task");
+  tasksContainer.appendChild(taskElement);
+  task.select();
 }
