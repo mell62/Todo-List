@@ -16,6 +16,7 @@ function renderTasks() {
     createTask(item);
   });
   renderEditBtns();
+  disableInput();
 }
 
 function cleanTasks() {
@@ -29,6 +30,7 @@ function createTask(item) {
   const taskElement = document.createElement("div");
   const taskTitle = document.createElement("input");
   taskTitle.setAttribute("value", item.taskTitle);
+  taskTitle.classList.toggle("task-title");
   taskElement.appendChild(createDoneBtn());
   taskElement.appendChild(taskTitle);
   taskElement.appendChild(createDeleteBtn());
@@ -73,6 +75,15 @@ function renderEditBtns() {
     if (index !== tasks.length - 1) {
       const doneBtn = task.querySelector(".done-btn");
       swapBtns(doneBtn);
+    }
+  });
+}
+
+function disableInput() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    if (task.querySelector(".edit-btn")) {
+      task.querySelector(".task-title").disabled = true;
     }
   });
 }
