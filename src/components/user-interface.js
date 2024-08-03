@@ -15,6 +15,7 @@ function renderTasks() {
   taskLibrary.forEach((item) => {
     createTask(item);
   });
+  renderEditBtns();
 }
 
 function cleanTasks() {
@@ -26,14 +27,14 @@ function cleanTasks() {
 
 function createTask(item) {
   const taskElement = document.createElement("div");
-  const task = document.createElement("input");
-  task.setAttribute("value", item.taskTitle);
+  const taskTitle = document.createElement("input");
+  taskTitle.setAttribute("value", item.taskTitle);
   taskElement.appendChild(createDoneBtn());
-  taskElement.appendChild(task);
+  taskElement.appendChild(taskTitle);
   taskElement.appendChild(createDeleteBtn());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
-  task.select();
+  taskTitle.select();
 }
 
 function createDoneBtn() {
@@ -64,4 +65,14 @@ function swapEditBtn(editBtn) {
   const task = editBtn.closest(".task");
   editBtn.remove();
   task.prepend(createDoneBtn());
+}
+
+function renderEditBtns() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task, index) => {
+    if (index !== tasks.length - 1) {
+      const doneBtn = task.querySelector(".done-btn");
+      swapBtns(doneBtn);
+    }
+  });
 }
