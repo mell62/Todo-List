@@ -34,9 +34,17 @@ function createTask(item) {
   const taskElement = document.createElement("div");
   const task = document.createElement("input");
   task.setAttribute("value", item.taskTitle);
+  taskElement.appendChild(createDoneBtn());
   taskElement.appendChild(task);
   taskElement.appendChild(createDeleteBtn());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
   task.select();
+}
+
+function createDoneBtn() {
+  const doneBtn = document.createElement("button");
+  doneBtn.textContent = "✅";
+  doneBtn.classList.toggle("done-btn");
+  return doneBtn;
 }
