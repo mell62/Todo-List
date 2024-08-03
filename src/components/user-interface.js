@@ -1,4 +1,4 @@
-export { renderTasks };
+export { renderTasks, swapBtns };
 import { taskLibrary } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -41,4 +41,27 @@ function createDoneBtn() {
   doneBtn.textContent = "✅";
   doneBtn.classList.toggle("done-btn");
   return doneBtn;
+}
+
+function createEditBtn() {
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "🖉";
+  editBtn.classList.toggle("edit-btn");
+  return editBtn;
+}
+
+function swapBtns(btn) {
+  btn.classList.contains("done-btn") ? swapDoneBtn(btn) : swapEditBtn(btn);
+}
+
+function swapDoneBtn(doneBtn) {
+  const task = doneBtn.closest(".task");
+  doneBtn.remove();
+  task.prepend(createEditBtn());
+}
+
+function swapEditBtn(editBtn) {
+  const task = editBtn.closest(".task");
+  editBtn.remove();
+  task.prepend(createDoneBtn());
 }
