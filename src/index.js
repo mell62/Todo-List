@@ -1,7 +1,6 @@
 import "./styles/style.css";
 import "./styles/modern-normalize.css";
-import { renderTasks, addTask, deleteTask } from "./barrel";
-import { saveTask } from "./components/main";
+import { renderTasks, addTask, deleteTask, saveTask, swapBtns } from "./barrel";
 
 renderTasks();
 
@@ -24,6 +23,15 @@ tasksContainer.addEventListener("click", (event) => {
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
     saveTask(event.target, event.target.nextSibling.value);
-    renderTasks();
+  }
+});
+
+//Swap done and edit buttons
+tasksContainer.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("done-btn") ||
+    event.target.classList.contains("edit-btn")
+  ) {
+    swapBtns(event.target);
   }
 });
