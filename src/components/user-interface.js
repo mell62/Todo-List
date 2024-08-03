@@ -1,5 +1,5 @@
-export { renderTasks, deleteTask };
-import { taskLibrary, removeTask } from "../barrel";
+export { renderTasks };
+import { taskLibrary } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
@@ -22,12 +22,6 @@ function cleanTasks() {
   tasks.forEach((task) => {
     tasksContainer.removeChild(task);
   });
-}
-
-function deleteTask(deleteBtn) {
-  const deleteBtns = document.querySelectorAll(".delete-btn");
-  const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, deleteBtn);
-  removeTask(deleteBtnIndex);
 }
 
 function createTask(item) {
