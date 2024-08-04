@@ -43,6 +43,7 @@ function createDoneBtn() {
   const doneBtn = document.createElement("button");
   doneBtn.textContent = "✅";
   doneBtn.classList.toggle("done-btn");
+  doneBtn.classList.add("task-editing");
   return doneBtn;
 }
 
@@ -50,6 +51,7 @@ function createEditBtn() {
   const editBtn = document.createElement("button");
   editBtn.textContent = "🖉";
   editBtn.classList.toggle("edit-btn");
+  editBtn.classList.add("task-editing");
   return editBtn;
 }
 

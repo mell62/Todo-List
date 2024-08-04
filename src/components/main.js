@@ -9,7 +9,7 @@ function deleteTask(deleteBtn) {
 }
 
 function saveTask(doneBtn, newTitle) {
-  const doneBtns = document.querySelectorAll(".done-btn");
+  const doneBtns = document.querySelectorAll(".task-editing");
   const doneBtnIndex = Array.prototype.indexOf.call(doneBtns, doneBtn);
   taskLibrary[doneBtnIndex].taskTitle = newTitle;
 }
