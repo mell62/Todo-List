@@ -26,6 +26,13 @@ tasksContainer.addEventListener("click", (event) => {
   }
 });
 
+//Disable input
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("done-btn")) {
+    event.target.nextSibling.disabled = true;
+  }
+});
+
 //Swap done and edit buttons
 tasksContainer.addEventListener("click", (event) => {
   if (
