@@ -1,4 +1,4 @@
-export { renderTasks, swapBtns };
+export { renderTasks, swapBtns, selectLatestTaskTitle };
 import { taskLibrary } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -36,7 +36,6 @@ function createTask(item) {
   taskElement.appendChild(createDeleteBtn());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
-  taskTitle.select();
 }
 
 function createDoneBtn() {
@@ -88,4 +87,16 @@ function disableInput() {
       task.querySelector(".task-title").disabled = true;
     }
   });
+}
+
+function selectTaskTitle(task) {
+  const taskTitle = task.querySelector(".task-title");
+  taskTitle.select();
+}
+
+function selectLatestTaskTitle() {
+  let numberOfTasks = taskLibrary.length;
+  const tasks = document.querySelectorAll(".task");
+  const latestTaskElement = tasks[numberOfTasks - 1];
+  selectTaskTitle(latestTaskElement);
 }

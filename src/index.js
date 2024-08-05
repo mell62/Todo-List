@@ -6,7 +6,7 @@ import {
   deleteTask,
   saveTask,
   swapBtns,
-  taskLibrary,
+  selectLatestTaskTitle,
 } from "./barrel";
 
 renderTasks();
@@ -17,6 +17,7 @@ const addBtn = document.querySelector(".add-task");
 // Add tasks
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
 addBtn.addEventListener("click", renderTasks);
+addBtn.addEventListener("click", selectLatestTaskTitle);
 
 //Delete tasks
 tasksContainer.addEventListener("click", (event) => {
