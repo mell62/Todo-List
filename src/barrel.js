@@ -1,4 +1,8 @@
-export { renderTasks, swapBtns } from "./components/user-interface.js";
+export {
+  renderTasks,
+  swapBtns,
+  selectLatestTaskTitle,
+} from "./components/user-interface.js";
 export {
   taskFactory,
   taskLibrary,
