@@ -38,10 +38,14 @@ tasksContainer.addEventListener("click", (event) => {
 //Disable/enable input
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
-    event.target.nextSibling.disabled = true;
+    const task = event.target.closest(".task");
+    const taskTitle = task.querySelector(".task-title");
+    taskTitle.disabled = true;
   }
   if (event.target.classList.contains("edit-btn")) {
-    event.target.nextSibling.disabled = false;
+    const task = event.target.closest(".task");
+    const taskTitle = task.querySelector(".task-title");
+    taskTitle.disabled = false;
   }
 });
 
