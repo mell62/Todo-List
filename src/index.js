@@ -1,6 +1,13 @@
 import "./styles/style.css";
 import "./styles/modern-normalize.css";
-import { renderTasks, addTask, deleteTask, saveTask, swapBtns } from "./barrel";
+import {
+  renderTasks,
+  addTask,
+  deleteTask,
+  saveTask,
+  swapBtns,
+  taskLibrary,
+} from "./barrel";
 
 renderTasks();
 
@@ -22,7 +29,9 @@ tasksContainer.addEventListener("click", (event) => {
 //Rename tasks
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
-    saveTask(event.target, event.target.nextSibling.value);
+    const task = event.target.closest(".task");
+    const taskTitle = task.querySelector(".task-title");
+    saveTask(event.target, taskTitle.value);
   }
 });
 
