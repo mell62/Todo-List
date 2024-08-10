@@ -8,5 +8,6 @@ export {
   taskLibrary,
   addTask,
   removeTask,
+  setEditFlag,
 } from "./components/task-library.js";
 export { deleteTask, saveTask } from "./components/main.js";
