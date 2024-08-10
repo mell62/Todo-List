@@ -1,5 +1,5 @@
 export { renderTasks, swapBtns, selectLatestTaskTitle };
-import { taskLibrary } from "../barrel";
+import { taskLibrary, setEditFlag } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
@@ -15,7 +15,7 @@ function renderTasks() {
   taskLibrary.forEach((item) => {
     createTask(item);
   });
-  renderEditBtns();
+  renderLatestTaskEditable();
   disableInput();
 }
 
@@ -31,7 +31,7 @@ function createTask(item) {
   const taskTitle = document.createElement("input");
   taskTitle.setAttribute("value", item.taskTitle);
   taskTitle.classList.toggle("task-title");
-  taskElement.appendChild(createDoneBtn());
+  taskElement.appendChild(createEditBtn());
   taskElement.appendChild(taskTitle);
   taskElement.appendChild(createDeleteBtn());
   taskElement.classList.toggle("task");
@@ -70,14 +70,23 @@ function swapEditBtn(editBtn) {
   task.prepend(createDoneBtn());
 }
 
-function renderEditBtns() {
+function renderTasksEditable() {
   const tasks = document.querySelectorAll(".task");
   tasks.forEach((task, index) => {
-    if (index !== tasks.length - 1) {
-      const doneBtn = task.querySelector(".done-btn");
-      swapBtns(doneBtn);
+    const taskBtn = task.querySelector(".task-editing");
+    if (taskLibrary[index].editFlag === true) {
+      if (task.querySelector(".edit-btn")) {
+        swapBtns(taskBtn);
+      }
     }
   });
+}
+
+function renderLatestTaskEditable() {
+  const tasks = document.querySelectorAll(".task");
+  let numberOfTasks = tasks.length;
+  setEditFlag(true, numberOfTasks - 1);
+  renderTasksEditable();
 }
 
 function disableInput() {
