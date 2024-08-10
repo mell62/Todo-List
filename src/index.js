@@ -7,6 +7,7 @@ import {
   saveTask,
   swapBtns,
   selectLatestTaskTitle,
+  setEditFlag,
 } from "./barrel";
 
 renderTasks();
@@ -47,6 +48,24 @@ tasksContainer.addEventListener("click", (event) => {
     const task = event.target.closest(".task");
     const taskTitle = task.querySelector(".task-title");
     taskTitle.disabled = false;
+  }
+});
+
+//Set edit flag
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("edit-btn")) {
+    const taskBtns = document.querySelectorAll(".task-editing");
+    const btnIndex = Array.prototype.indexOf.call(taskBtns, event.target);
+    setEditFlag(true, btnIndex);
+  }
+});
+
+//Un-set edit flag
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("done-btn")) {
+    const taskBtns = document.querySelectorAll(".task-editing");
+    const btnIndex = Array.prototype.indexOf.call(taskBtns, event.target);
+    setEditFlag(false, btnIndex);
   }
 });
 
