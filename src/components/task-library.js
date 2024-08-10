@@ -1,8 +1,9 @@
-export { taskFactory, taskLibrary, addTask, removeTask };
+export { taskFactory, taskLibrary, addTask, removeTask, setEditFlag };
 
 let taskFactory = (title) => {
   let taskTitle = title;
-  return { taskTitle };
+  let editFlag = false;
+  return { taskTitle, editFlag };
 };
 
 let defaultTask = taskFactory("Sample task");
@@ -16,4 +17,10 @@ function addTask(title) {
 
 function removeTask(index) {
   taskLibrary.splice(index, 1);
+}
+
+function setEditFlag(state, index) {
+  if (typeof state === "boolean") {
+    taskLibrary[index].editFlag = state;
+  }
 }
