@@ -4,6 +4,7 @@ export {
   selectLatestTaskTitle,
   renderTasksEditable,
   renderLatestTaskEditable,
+  enableInput,
 };
 import { taskLibrary, setEditFlag } from "../barrel";
 
@@ -21,7 +22,6 @@ function renderTasks() {
   taskLibrary.forEach((item) => {
     createTask(item);
   });
-  disableInput();
 }
 
 function cleanTasks() {
@@ -36,6 +36,7 @@ function createTask(item) {
   const taskTitle = document.createElement("input");
   taskTitle.setAttribute("value", item.taskTitle);
   taskTitle.classList.toggle("task-title");
+  taskTitle.disabled = true;
   taskElement.appendChild(createEditBtn());
   taskElement.appendChild(taskTitle);
   taskElement.appendChild(createDeleteBtn());
@@ -93,11 +94,11 @@ function renderLatestTaskEditable() {
   setEditFlag(true, numberOfTasks - 1);
 }
 
-function disableInput() {
+function enableInput() {
   const tasks = document.querySelectorAll(".task");
   tasks.forEach((task) => {
-    if (task.querySelector(".edit-btn")) {
-      task.querySelector(".task-title").disabled = true;
+    if (task.querySelector(".done-btn")) {
+      task.querySelector(".task-title").disabled = false;
     }
   });
 }

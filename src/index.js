@@ -10,6 +10,7 @@ import {
   setEditFlag,
   renderTasksEditable,
   renderLatestTaskEditable,
+  enableInput,
 } from "./barrel";
 
 renderTasks();
@@ -22,7 +23,7 @@ addBtn.addEventListener("click", addTask.bind(null, "New Task"));
 addBtn.addEventListener("click", renderTasks);
 addBtn.addEventListener("click", renderLatestTaskEditable);
 addBtn.addEventListener("click", renderTasksEditable);
-
+addBtn.addEventListener("click", enableInput);
 addBtn.addEventListener("click", selectLatestTaskTitle);
 
 //Delete tasks
