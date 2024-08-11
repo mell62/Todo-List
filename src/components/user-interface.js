@@ -107,7 +107,10 @@ function enableInput() {
   const tasks = document.querySelectorAll(".task");
   tasks.forEach((task) => {
     if (task.querySelector(".done-btn")) {
-      task.querySelector(".task-title").disabled = false;
+      let inputFields = task.querySelectorAll("input");
+      inputFields.forEach((input) => {
+        input.disabled = false;
+      });
     }
   });
 }
