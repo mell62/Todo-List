@@ -1,6 +1,6 @@
 import { removeTask, taskLibrary } from "../barrel";
 
-export { deleteTask, saveTask, setDatePickerValue, setDateLimit };
+export { deleteTask, saveTask, setDateLimit };
 
 function deleteTask(deleteBtn) {
   const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -15,13 +15,6 @@ function saveTask(doneBtn, newTitle, dueDate) {
   taskLibrary[doneBtnIndex].dueDate = dueDate;
 }
 
-function setDatePickerValue() {
-  const tasks = document.querySelectorAll(".task");
-  tasks.forEach((task, index) => {
-    let dueDateField = task.querySelector(".date-picker");
-    dueDateField.value = taskLibrary[index].dueDate;
-  });
-}
 function formatDate(date) {
   let year = date.getFullYear();
   let month = (date.getMonth() + 1).toString();

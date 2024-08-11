@@ -15,9 +15,4 @@ export {
   setEditFlag,
 } from "./components/task-library.js";
 
-export {
-  deleteTask,
-  saveTask,
-  setDatePickerValue,
-  setDateLimit,
-} from "./components/main.js";
+export { deleteTask, saveTask, setDateLimit } from "./components/main.js";

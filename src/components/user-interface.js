@@ -6,12 +6,7 @@ export {
   renderLatestTaskEditable,
   enableInput,
 };
-import {
-  taskLibrary,
-  setEditFlag,
-  setDatePickerValue,
-  setDateLimit,
-} from "../barrel";
+import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
@@ -37,19 +32,22 @@ function cleanTasks() {
   });
 }
 
-function createTask(item) {
+function createTask(task) {
   const taskElement = document.createElement("div");
-  const taskTitle = document.createElement("input");
-  taskTitle.setAttribute("value", item.taskTitle);
-  taskTitle.classList.toggle("task-title");
-  taskTitle.disabled = true;
   taskElement.appendChild(createEditBtn());
-  taskElement.appendChild(taskTitle);
+  taskElement.appendChild(createTaskTitle(task));
   taskElement.appendChild(createDeleteBtn());
-  taskElement.appendChild(createDatePicker());
-  setDatePickerValue();
+  taskElement.appendChild(createDatePicker(task));
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
+}
+
+function createTaskTitle(task) {
+  const taskTitle = document.createElement("input");
+  taskTitle.setAttribute("value", task.taskTitle);
+  taskTitle.classList.toggle("task-title");
+  taskTitle.disabled = true;
+  return taskTitle;
 }
 
 function createDoneBtn() {
@@ -68,9 +66,10 @@ function createEditBtn() {
   return editBtn;
 }
 
-function createDatePicker() {
+function createDatePicker(task) {
   const datePicker = document.createElement("input");
   datePicker.setAttribute("type", "date");
+  datePicker.setAttribute("value", task.dueDate);
   datePicker.classList.toggle("date-picker");
   datePicker.disabled = true;
   return datePicker;
