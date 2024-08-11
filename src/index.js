@@ -10,7 +10,9 @@ import {
   setEditFlag,
   renderTasksEditable,
   renderLatestTaskEditable,
-  enableInput,
+  enableInputs,
+  enableInputElements,
+  enableTextareaElements,
 } from "./barrel";
 
 renderTasks();
@@ -23,7 +25,7 @@ addBtn.addEventListener("click", addTask.bind(null, "New Task"));
 addBtn.addEventListener("click", renderTasks);
 addBtn.addEventListener("click", renderLatestTaskEditable);
 addBtn.addEventListener("click", renderTasksEditable);
-addBtn.addEventListener("click", enableInput);
+addBtn.addEventListener("click", enableInputs);
 addBtn.addEventListener("click", selectLatestTaskTitle);
 
 //Delete tasks
@@ -32,7 +34,7 @@ tasksContainer.addEventListener("click", (event) => {
     deleteTask(event.target);
     renderTasks();
     renderTasksEditable();
-    enableInput();
+    enableInputs();
   }
 });
 
@@ -42,7 +44,13 @@ tasksContainer.addEventListener("click", (event) => {
     const task = event.target.closest(".task");
     const taskTitle = task.querySelector(".task-title");
     const dueDateField = task.querySelector(".date-picker");
-    saveTask(event.target, taskTitle.value, dueDateField.value);
+    const taskDescriptionField = task.querySelector(".task-description");
+    saveTask(
+      event.target,
+      taskTitle.value,
+      dueDateField.value,
+      taskDescriptionField.value
+    );
   }
 });
 
@@ -54,13 +62,15 @@ tasksContainer.addEventListener("click", (event) => {
     inputFields.forEach((input) => {
       input.disabled = true;
     });
+    let textAreaFields = task.querySelectorAll("textarea");
+    textAreaFields.forEach((textArea) => {
+      textArea.disabled = true;
+    });
   }
   if (event.target.classList.contains("edit-btn")) {
     const task = event.target.closest(".task");
-    let inputFields = task.querySelectorAll("input");
-    inputFields.forEach((input) => {
-      input.disabled = false;
-    });
+    enableInputElements(task);
+    enableTextareaElements(task);
   }
 });
 

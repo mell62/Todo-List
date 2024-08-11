@@ -4,7 +4,9 @@ export {
   selectLatestTaskTitle,
   renderTasksEditable,
   renderLatestTaskEditable,
-  enableInput,
+  enableInputs,
+  enableInputElements,
+  enableTextareaElements,
 } from "./components/user-interface.js";
 
 export {

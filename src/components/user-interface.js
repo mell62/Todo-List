@@ -4,18 +4,13 @@ export {
   selectLatestTaskTitle,
   renderTasksEditable,
   renderLatestTaskEditable,
-  enableInput,
+  enableInputs,
+  enableInputElements,
+  enableTextareaElements,
 };
 import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
-
-function createDeleteBtn() {
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "🗑";
-  deleteBtn.classList.toggle("delete-btn");
-  return deleteBtn;
-}
 
 function renderTasks() {
   cleanTasks();
@@ -37,6 +32,7 @@ function createTask(task) {
   taskElement.appendChild(createEditBtn());
   taskElement.appendChild(createTaskTitle(task));
   taskElement.appendChild(createDeleteBtn());
+  taskElement.appendChild(createTaskDescription(task));
   taskElement.appendChild(createDatePicker(task));
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
@@ -64,6 +60,24 @@ function createEditBtn() {
   editBtn.classList.toggle("edit-btn");
   editBtn.classList.add("task-editing");
   return editBtn;
+}
+
+function createDeleteBtn() {
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "🗑";
+  deleteBtn.classList.toggle("delete-btn");
+  return deleteBtn;
+}
+
+function createTaskDescription(task) {
+  const taskDescription = document.createElement("textarea");
+  taskDescription.innerHTML = task.taskDescription;
+  taskDescription.setAttribute("placeholder", "Describe your task...");
+  taskDescription.setAttribute("rows", "3");
+  taskDescription.setAttribute("cols", "20");
+  taskDescription.disabled = true;
+  taskDescription.classList.toggle("task-description");
+  return taskDescription;
 }
 
 function createDatePicker(task) {
@@ -109,15 +123,27 @@ function renderLatestTaskEditable() {
   setEditFlag(true, numberOfTasks - 1);
 }
 
-function enableInput() {
+function enableInputs() {
   const tasks = document.querySelectorAll(".task");
   tasks.forEach((task) => {
     if (task.querySelector(".done-btn")) {
-      let inputFields = task.querySelectorAll("input");
-      inputFields.forEach((input) => {
-        input.disabled = false;
-      });
+      enableInputElements(task);
+      enableTextareaElements(task);
     }
+  });
+}
+
+function enableInputElements(task) {
+  let inputFields = task.querySelectorAll("input");
+  inputFields.forEach((input) => {
+    input.disabled = false;
+  });
+}
+
+function enableTextareaElements(task) {
+  let inputFields = task.querySelectorAll("textarea");
+  inputFields.forEach((input) => {
+    input.disabled = false;
   });
 }
 

@@ -8,11 +8,13 @@ function deleteTask(deleteBtn) {
   removeTask(deleteBtnIndex);
 }
 
-function saveTask(doneBtn, newTitle, dueDate) {
+function saveTask(doneBtn, newTitle, dueDate, taskDescription) {
   const doneBtns = document.querySelectorAll(".task-editing");
   const doneBtnIndex = Array.prototype.indexOf.call(doneBtns, doneBtn);
   taskLibrary[doneBtnIndex].taskTitle = newTitle;
   taskLibrary[doneBtnIndex].dueDate = dueDate;
+  taskLibrary[doneBtnIndex].taskDescription = taskDescription;
+  console.log(taskLibrary);
 }
 
 function formatDate(date) {

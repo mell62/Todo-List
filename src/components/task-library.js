@@ -3,8 +3,9 @@ export { taskFactory, taskLibrary, addTask, removeTask, setEditFlag };
 let taskFactory = (title) => {
   let taskTitle = title;
   let dueDate;
+  let taskDescription = "";
   let editFlag = false;
-  return { taskTitle, editFlag, dueDate };
+  return { taskTitle, editFlag, dueDate, taskDescription };
 };
 
 let defaultTask = taskFactory("Sample task");
