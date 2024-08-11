@@ -49,13 +49,17 @@ tasksContainer.addEventListener("click", (event) => {
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
     const task = event.target.closest(".task");
-    const taskTitle = task.querySelector(".task-title");
-    taskTitle.disabled = true;
+    let inputFields = task.querySelectorAll("input");
+    inputFields.forEach((input) => {
+      input.disabled = true;
+    });
   }
   if (event.target.classList.contains("edit-btn")) {
     const task = event.target.closest(".task");
-    const taskTitle = task.querySelector(".task-title");
-    taskTitle.disabled = false;
+    let inputFields = task.querySelectorAll("input");
+    inputFields.forEach((input) => {
+      input.disabled = false;
+    });
   }
 });
 
