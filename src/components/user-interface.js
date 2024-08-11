@@ -6,7 +6,7 @@ export {
   renderLatestTaskEditable,
   enableInput,
 };
-import { taskLibrary, setEditFlag } from "../barrel";
+import { taskLibrary, setEditFlag, setDatePickerValue } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
@@ -41,6 +41,7 @@ function createTask(item) {
   taskElement.appendChild(taskTitle);
   taskElement.appendChild(createDeleteBtn());
   taskElement.appendChild(createDatePicker());
+  setDatePickerValue();
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
 }
