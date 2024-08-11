@@ -40,6 +40,7 @@ function createTask(item) {
   taskElement.appendChild(createEditBtn());
   taskElement.appendChild(taskTitle);
   taskElement.appendChild(createDeleteBtn());
+  taskElement.appendChild(createDatePicker());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
 }
@@ -58,6 +59,14 @@ function createEditBtn() {
   editBtn.classList.toggle("edit-btn");
   editBtn.classList.add("task-editing");
   return editBtn;
+}
+
+function createDatePicker() {
+  const datePicker = document.createElement("input");
+  datePicker.setAttribute("type", "date");
+  datePicker.classList.toggle("date-picker");
+  datePicker.disabled = true;
+  return datePicker;
 }
 
 function swapBtns(btn) {
