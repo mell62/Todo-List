@@ -31,6 +31,8 @@ tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-btn")) {
     deleteTask(event.target);
     renderTasks();
+    renderTasksEditable();
+    enableInput();
   }
 });
 
