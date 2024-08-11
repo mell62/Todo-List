@@ -36,12 +36,13 @@ tasksContainer.addEventListener("click", (event) => {
   }
 });
 
-//Rename tasks
+//Save tasks
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
     const task = event.target.closest(".task");
     const taskTitle = task.querySelector(".task-title");
-    saveTask(event.target, taskTitle.value);
+    const dueDateField = task.querySelector(".date-picker");
+    saveTask(event.target, taskTitle.value, dueDateField.value);
   }
 });
 

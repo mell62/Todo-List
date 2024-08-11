@@ -13,4 +13,4 @@ export {
   removeTask,
   setEditFlag,
 } from "./components/task-library.js";
-export { deleteTask, saveTask } from "./components/main.js";
+export { deleteTask, saveTask, setDatePickerValue } from "./components/main.js";
