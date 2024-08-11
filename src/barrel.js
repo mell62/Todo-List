@@ -4,6 +4,7 @@ export {
   selectLatestTaskTitle,
   renderTasksEditable,
   renderLatestTaskEditable,
+  enableInput,
 } from "./components/user-interface.js";
 export {
   taskFactory,
