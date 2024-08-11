@@ -2,6 +2,8 @@ export {
   renderTasks,
   swapBtns,
   selectLatestTaskTitle,
+  renderTasksEditable,
+  renderLatestTaskEditable,
 } from "./components/user-interface.js";
 export {
   taskFactory,

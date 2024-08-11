@@ -8,6 +8,8 @@ import {
   swapBtns,
   selectLatestTaskTitle,
   setEditFlag,
+  renderTasksEditable,
+  renderLatestTaskEditable,
 } from "./barrel";
 
 renderTasks();
@@ -18,6 +20,9 @@ const addBtn = document.querySelector(".add-task");
 // Add tasks
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
 addBtn.addEventListener("click", renderTasks);
+addBtn.addEventListener("click", renderLatestTaskEditable);
+addBtn.addEventListener("click", renderTasksEditable);
+
 addBtn.addEventListener("click", selectLatestTaskTitle);
 
 //Delete tasks
