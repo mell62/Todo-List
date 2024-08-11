@@ -6,7 +6,12 @@ export {
   renderLatestTaskEditable,
   enableInput,
 };
-import { taskLibrary, setEditFlag, setDatePickerValue } from "../barrel";
+import {
+  taskLibrary,
+  setEditFlag,
+  setDatePickerValue,
+  setDateLimit,
+} from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
@@ -22,6 +27,7 @@ function renderTasks() {
   taskLibrary.forEach((item) => {
     createTask(item);
   });
+  setDateLimit();
 }
 
 function cleanTasks() {
