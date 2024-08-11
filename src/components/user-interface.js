@@ -1,4 +1,10 @@
-export { renderTasks, swapBtns, selectLatestTaskTitle };
+export {
+  renderTasks,
+  swapBtns,
+  selectLatestTaskTitle,
+  renderTasksEditable,
+  renderLatestTaskEditable,
+};
 import { taskLibrary, setEditFlag } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -15,7 +21,6 @@ function renderTasks() {
   taskLibrary.forEach((item) => {
     createTask(item);
   });
-  renderLatestTaskEditable();
   disableInput();
 }
 
@@ -86,7 +91,6 @@ function renderLatestTaskEditable() {
   const tasks = document.querySelectorAll(".task");
   let numberOfTasks = tasks.length;
   setEditFlag(true, numberOfTasks - 1);
-  renderTasksEditable();
 }
 
 function disableInput() {
