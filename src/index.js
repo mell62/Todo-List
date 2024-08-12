@@ -7,6 +7,7 @@ import {
   saveTask,
   swapBtns,
   selectLatestTaskTitle,
+  deselectTaskTitle,
   setEditFlag,
   renderTasksEditable,
   renderLatestTaskEditable,
@@ -50,6 +51,17 @@ tasksContainer.addEventListener("click", (event) => {
       dueDateField.value,
       taskDescriptionField.value
     );
+  }
+});
+
+//Deselect task title
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("done-btn")) {
+    const editingBtns = document.querySelectorAll(".task-editing");
+    const tasks = document.querySelectorAll(".task");
+    const btnIndex = Array.prototype.indexOf.call(editingBtns, event.target);
+    const task = tasks[btnIndex];
+    deselectTaskTitle(task);
   }
 });
 

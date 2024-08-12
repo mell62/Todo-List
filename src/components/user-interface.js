@@ -2,6 +2,7 @@ export {
   renderTasks,
   swapBtns,
   selectLatestTaskTitle,
+  deselectTaskTitle,
   renderTasksEditable,
   renderLatestTaskEditable,
   enableInputs,
@@ -225,6 +226,12 @@ function disablePriorityBtns(task) {
 function selectTaskTitle(task) {
   const taskTitle = task.querySelector(".task-title");
   taskTitle.select();
+}
+
+function deselectTaskTitle(task) {
+  const taskTitle = task.querySelector(".task-title");
+  taskTitle.focus();
+  taskTitle.setSelectionRange(0, 0);
 }
 
 function selectLatestTaskTitle() {

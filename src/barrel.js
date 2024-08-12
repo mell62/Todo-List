@@ -2,6 +2,7 @@ export {
   renderTasks,
   swapBtns,
   selectLatestTaskTitle,
+  deselectTaskTitle,
   renderTasksEditable,
   renderLatestTaskEditable,
   enableInputs,
