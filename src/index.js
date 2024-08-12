@@ -11,12 +11,7 @@ import {
   renderTasksEditable,
   renderLatestTaskEditable,
   enableInputs,
-  enableInputElements,
-  enableTextareaElements,
-  enablePriorityBtns,
-  disableInputElements,
-  disableTextAreaElements,
-  disablePriorityBtns,
+  disableInputs,
 } from "./barrel";
 
 renderTasks();
@@ -58,22 +53,6 @@ tasksContainer.addEventListener("click", (event) => {
   }
 });
 
-//Disable/enable input
-tasksContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("done-btn")) {
-    const task = event.target.closest(".task");
-    disableInputElements(task);
-    disableTextAreaElements(task);
-    disablePriorityBtns(task);
-  }
-  if (event.target.classList.contains("edit-btn")) {
-    const task = event.target.closest(".task");
-    enableInputElements(task);
-    enableTextareaElements(task);
-    enablePriorityBtns(task);
-  }
-});
-
 //Set edit flag
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("edit-btn")) {
@@ -99,5 +78,7 @@ tasksContainer.addEventListener("click", (event) => {
     event.target.classList.contains("edit-btn")
   ) {
     swapBtns(event.target);
+    enableInputs();
+    disableInputs();
   }
 });

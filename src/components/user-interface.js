@@ -5,12 +5,7 @@ export {
   renderTasksEditable,
   renderLatestTaskEditable,
   enableInputs,
-  enableInputElements,
-  enableTextareaElements,
-  enablePriorityBtns,
-  disableInputElements,
-  disableTextAreaElements,
-  disablePriorityBtns,
+  disableInputs,
 };
 import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
 
@@ -170,6 +165,17 @@ function enableInputs() {
       enableInputElements(task);
       enableTextareaElements(task);
       enablePriorityBtns(task);
+    }
+  });
+}
+
+function disableInputs() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    if (task.querySelector(".edit-btn")) {
+      disableInputElements(task);
+      disableTextAreaElements(task);
+      disablePriorityBtns(task);
     }
   });
 }

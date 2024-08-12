@@ -5,12 +5,7 @@ export {
   renderTasksEditable,
   renderLatestTaskEditable,
   enableInputs,
-  enableInputElements,
-  enableTextareaElements,
-  enablePriorityBtns,
-  disableInputElements,
-  disableTextAreaElements,
-  disablePriorityBtns,
+  disableInputs,
 } from "./components/user-interface.js";
 
 export {
