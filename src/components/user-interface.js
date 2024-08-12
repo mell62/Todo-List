@@ -39,11 +39,13 @@ function createTask(task) {
 }
 
 function createTaskTitle(task) {
+  const taskTitleContainer = document.createElement("div");
   const taskTitle = document.createElement("input");
   taskTitle.setAttribute("value", task.taskTitle);
   taskTitle.classList.toggle("task-title");
   taskTitle.disabled = true;
-  return taskTitle;
+  taskTitleContainer.appendChild(taskTitle);
+  return taskTitleContainer;
 }
 
 function createDoneBtn() {
@@ -70,6 +72,7 @@ function createDeleteBtn() {
 }
 
 function createTaskDescription(task) {
+  const taskDescriptionContainer = document.createElement("div");
   const taskDescription = document.createElement("textarea");
   taskDescription.innerHTML = task.taskDescription;
   taskDescription.setAttribute("placeholder", "Describe your task...");
@@ -77,16 +80,19 @@ function createTaskDescription(task) {
   taskDescription.setAttribute("cols", "20");
   taskDescription.disabled = true;
   taskDescription.classList.toggle("task-description");
-  return taskDescription;
+  taskDescriptionContainer.appendChild(taskDescription);
+  return taskDescriptionContainer;
 }
 
 function createDatePicker(task) {
+  const datePickerContainer = document.createElement("div");
   const datePicker = document.createElement("input");
   datePicker.setAttribute("type", "date");
   datePicker.setAttribute("value", task.dueDate);
   datePicker.classList.toggle("date-picker");
   datePicker.disabled = true;
-  return datePicker;
+  datePickerContainer.appendChild(datePicker);
+  return datePickerContainer;
 }
 
 function swapBtns(btn) {
