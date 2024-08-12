@@ -14,7 +14,6 @@ function saveTask(doneBtn, newTitle, dueDate, taskDescription) {
   taskLibrary[doneBtnIndex].taskTitle = newTitle;
   taskLibrary[doneBtnIndex].dueDate = dueDate;
   taskLibrary[doneBtnIndex].taskDescription = taskDescription;
-  console.log(taskLibrary);
 }
 
 function formatDate(date) {

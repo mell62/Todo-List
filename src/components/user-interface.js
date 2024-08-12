@@ -8,6 +8,9 @@ export {
   enableInputElements,
   enableTextareaElements,
   enablePriorityBtns,
+  disableInputElements,
+  disableTextAreaElements,
+  disablePriorityBtns,
 };
 import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
 
@@ -189,6 +192,27 @@ function enablePriorityBtns(task) {
   let priorityBtns = task.querySelectorAll(".priority-btn");
   priorityBtns.forEach((btn) => {
     btn.disabled = false;
+  });
+}
+
+function disableInputElements(task) {
+  let inputFields = task.querySelectorAll("input");
+  inputFields.forEach((input) => {
+    input.disabled = true;
+  });
+}
+
+function disableTextAreaElements(task) {
+  let textAreaFields = task.querySelectorAll("textarea");
+  textAreaFields.forEach((textArea) => {
+    textArea.disabled = true;
+  });
+}
+
+function disablePriorityBtns(task) {
+  let priorityBtns = task.querySelectorAll(".priority-btn");
+  priorityBtns.forEach((btn) => {
+    btn.disabled = true;
   });
 }
 

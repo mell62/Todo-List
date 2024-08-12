@@ -8,6 +8,9 @@ export {
   enableInputElements,
   enableTextareaElements,
   enablePriorityBtns,
+  disableInputElements,
+  disableTextAreaElements,
+  disablePriorityBtns,
 } from "./components/user-interface.js";
 
 export {

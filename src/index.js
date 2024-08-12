@@ -14,6 +14,9 @@ import {
   enableInputElements,
   enableTextareaElements,
   enablePriorityBtns,
+  disableInputElements,
+  disableTextAreaElements,
+  disablePriorityBtns,
 } from "./barrel";
 
 renderTasks();
@@ -59,18 +62,9 @@ tasksContainer.addEventListener("click", (event) => {
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
     const task = event.target.closest(".task");
-    let inputFields = task.querySelectorAll("input");
-    inputFields.forEach((input) => {
-      input.disabled = true;
-    });
-    let textAreaFields = task.querySelectorAll("textarea");
-    textAreaFields.forEach((textArea) => {
-      textArea.disabled = true;
-    });
-    let priorityBtns = task.querySelectorAll(".priority-btn");
-    priorityBtns.forEach((btn) => {
-      btn.disabled = true;
-    });
+    disableInputElements(task);
+    disableTextAreaElements(task);
+    disablePriorityBtns(task);
   }
   if (event.target.classList.contains("edit-btn")) {
     const task = event.target.closest(".task");
