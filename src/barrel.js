@@ -7,6 +7,7 @@ export {
   enableInputs,
   enableInputElements,
   enableTextareaElements,
+  enablePriorityBtns,
 } from "./components/user-interface.js";
 
 export {
@@ -15,6 +16,7 @@ export {
   addTask,
   removeTask,
   setEditFlag,
+  togglePriority,
 } from "./components/task-library.js";
 
 export { deleteTask, saveTask, setDateLimit } from "./components/main.js";

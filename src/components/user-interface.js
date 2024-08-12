@@ -7,6 +7,7 @@ export {
   enableInputs,
   enableInputElements,
   enableTextareaElements,
+  enablePriorityBtns,
 };
 import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
 
@@ -34,6 +35,7 @@ function createTask(task) {
   taskElement.appendChild(createDeleteBtn());
   taskElement.appendChild(createTaskDescription(task));
   taskElement.appendChild(createDatePicker(task));
+  taskElement.appendChild(createPriorities());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
 }
@@ -95,6 +97,35 @@ function createDatePicker(task) {
   return datePickerContainer;
 }
 
+function createPriorities() {
+  const priorityContainer = document.createElement("div");
+  const highPriorityBtn = document.createElement("button");
+  const mediumPriorityBtn = document.createElement("button");
+  const lowPriorityBtn = document.createElement("button");
+
+  highPriorityBtn.classList.toggle("high-priority-btn");
+  mediumPriorityBtn.classList.toggle("medium-priority-btn");
+  lowPriorityBtn.classList.toggle("low-priority-btn");
+
+  highPriorityBtn.classList.toggle("priority-btn");
+  mediumPriorityBtn.classList.toggle("priority-btn");
+  lowPriorityBtn.classList.toggle("priority-btn");
+
+  highPriorityBtn.textContent = "High";
+  mediumPriorityBtn.textContent = "Medium";
+  lowPriorityBtn.textContent = "Low";
+
+  highPriorityBtn.disabled = true;
+  mediumPriorityBtn.disabled = true;
+  lowPriorityBtn.disabled = true;
+
+  priorityContainer.appendChild(highPriorityBtn);
+  priorityContainer.appendChild(mediumPriorityBtn);
+  priorityContainer.appendChild(lowPriorityBtn);
+
+  return priorityContainer;
+}
+
 function swapBtns(btn) {
   btn.classList.contains("done-btn") ? swapDoneBtn(btn) : swapEditBtn(btn);
 }
@@ -135,6 +166,7 @@ function enableInputs() {
     if (task.querySelector(".done-btn")) {
       enableInputElements(task);
       enableTextareaElements(task);
+      enablePriorityBtns(task);
     }
   });
 }
@@ -150,6 +182,13 @@ function enableTextareaElements(task) {
   let inputFields = task.querySelectorAll("textarea");
   inputFields.forEach((input) => {
     input.disabled = false;
+  });
+}
+
+function enablePriorityBtns(task) {
+  let priorityBtns = task.querySelectorAll(".priority-btn");
+  priorityBtns.forEach((btn) => {
+    btn.disabled = false;
   });
 }
 

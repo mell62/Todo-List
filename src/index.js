@@ -13,6 +13,7 @@ import {
   enableInputs,
   enableInputElements,
   enableTextareaElements,
+  enablePriorityBtns,
 } from "./barrel";
 
 renderTasks();
@@ -66,11 +67,16 @@ tasksContainer.addEventListener("click", (event) => {
     textAreaFields.forEach((textArea) => {
       textArea.disabled = true;
     });
+    let priorityBtns = task.querySelectorAll(".priority-btn");
+    priorityBtns.forEach((btn) => {
+      btn.disabled = true;
+    });
   }
   if (event.target.classList.contains("edit-btn")) {
     const task = event.target.closest(".task");
     enableInputElements(task);
     enableTextareaElements(task);
+    enablePriorityBtns(task);
   }
 });
 
