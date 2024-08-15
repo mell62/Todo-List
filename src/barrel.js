@@ -7,6 +7,7 @@ export {
   renderLatestTaskEditable,
   enableInputs,
   disableInputs,
+  setPriorityStyling,
 } from "./components/user-interface.js";
 
 export {

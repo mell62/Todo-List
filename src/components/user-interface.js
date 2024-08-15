@@ -7,6 +7,7 @@ export {
   renderLatestTaskEditable,
   enableInputs,
   disableInputs,
+  setPriorityStyling,
 };
 import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
 

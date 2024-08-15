@@ -45,6 +45,13 @@ function setEditFlag(state, index) {
   }
 }
 
-function togglePriority(priority) {
-  priority = !priority;
+function setPrioritiesFalse(index) {
+  taskLibrary[index].highPriority = false;
+  taskLibrary[index].mediumPriority = false;
+  taskLibrary[index].lowPriority = false;
+}
+
+function togglePriority(priority, index) {
+  setPrioritiesFalse(index); //To set other priorities as false
+  taskLibrary[index][priority] = !taskLibrary[index][priority];
 }

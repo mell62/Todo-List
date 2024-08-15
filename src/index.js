@@ -13,6 +13,8 @@ import {
   renderLatestTaskEditable,
   enableInputs,
   disableInputs,
+  togglePriority,
+  setPriorityStyling,
 } from "./barrel";
 
 renderTasks();
@@ -92,5 +94,27 @@ tasksContainer.addEventListener("click", (event) => {
     swapBtns(event.target);
     enableInputs();
     disableInputs();
+  }
+});
+
+//Set priority flag
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("priority-btn")) {
+    const tasks = document.querySelectorAll(".task");
+    const thisTask = event.target.closest(".task");
+    const taskIndex = Array.prototype.indexOf.call(tasks, thisTask);
+    if (event.target.classList.contains("high-priority-btn")) {
+      togglePriority("highPriority", taskIndex);
+    } else if (event.target.classList.contains("medium-priority-btn")) {
+      togglePriority("mediumPriority", taskIndex);
+    } else {
+      togglePriority("lowPriority", taskIndex);
+    }
+  }
+});
+
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("priority-btn")) {
+    setPriorityStyling();
   }
 });
