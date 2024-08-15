@@ -50,3 +50,7 @@ body {
   height: min-content;
   padding: 1rem;
 }
+
+.priority-styling {
+  border: 3px solid black;
+}

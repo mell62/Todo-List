@@ -18,6 +18,7 @@ function renderTasks() {
     createTask(item);
   });
   setDateLimit();
+  setPriorityStyling();
 }
 
 function cleanTasks() {
@@ -239,4 +240,25 @@ function selectLatestTaskTitle() {
   const tasks = document.querySelectorAll(".task");
   const latestTaskElement = tasks[numberOfTasks - 1];
   selectTaskTitle(latestTaskElement);
+}
+
+function setPriorityStyling() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task, index) => {
+    let highPriorityBtn = task.querySelector(".high-priority-btn");
+    let mediumPriorityBtn = task.querySelector(".medium-priority-btn");
+    let lowPriorityBtn = task.querySelector(".low-priority-btn");
+
+    taskLibrary[index].highPriority
+      ? highPriorityBtn.classList.add("priority-styling")
+      : highPriorityBtn.classList.remove("priority-styling");
+
+    taskLibrary[index].mediumPriority
+      ? mediumPriorityBtn.classList.add("priority-styling")
+      : mediumPriorityBtn.classList.remove("priority-styling");
+
+    taskLibrary[index].lowPriority
+      ? lowPriorityBtn.classList.add("priority-styling")
+      : lowPriorityBtn.classList.remove("priority-styling");
+  });
 }
