@@ -20,6 +20,7 @@ function renderTasks() {
   });
   setDateLimit();
   setPriorityStyling();
+  disableAllEditBtns();
 }
 
 function cleanTasks() {
@@ -265,5 +266,13 @@ function setPriorityStyling() {
     taskLibrary[index].lowPriority
       ? lowPriorityBtn.classList.add("priority-styling")
       : lowPriorityBtn.classList.remove("priority-styling");
+  });
+}
+
+function disableAllEditBtns() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    const editBtn = task.querySelector(".edit-btn");
+    editBtn.disabled = true;
   });
 }
