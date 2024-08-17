@@ -151,6 +151,10 @@ function renderTasksEditable() {
       if (task.querySelector(".edit-btn")) {
         swapBtns(taskBtn);
       }
+    } else if (taskLibrary[index].editFlag === false) {
+      if (task.querySelector(".done-btn")) {
+        swapBtns(taskBtn);
+      }
     }
   });
 }

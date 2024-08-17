@@ -91,7 +91,7 @@ tasksContainer.addEventListener("click", (event) => {
     event.target.classList.contains("done-btn") ||
     event.target.classList.contains("edit-btn")
   ) {
-    swapBtns(event.target);
+    renderTasksEditable();
     enableInputs();
     disableInputs();
   }
