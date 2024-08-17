@@ -46,6 +46,14 @@ body {
   padding: 1rem;
 }
 
+.edit-btn {
+  opacity: 0;
+}
+
+.task:hover .edit-btn {
+  opacity: 1;
+}
+
 .add-task {
   height: min-content;
   padding: 1rem;
