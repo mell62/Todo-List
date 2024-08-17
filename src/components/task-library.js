@@ -39,8 +39,15 @@ function removeTask(index) {
   taskLibrary.splice(index, 1);
 }
 
+function setAllEditFlagsFalse() {
+  taskLibrary.forEach((task) => {
+    task.editFlag = false;
+  });
+}
+
 function setEditFlag(state, index) {
   if (typeof state === "boolean") {
+    setAllEditFlagsFalse();
     taskLibrary[index].editFlag = state;
   }
 }
