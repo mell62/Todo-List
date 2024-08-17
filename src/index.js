@@ -65,6 +65,12 @@ tasksContainer.addEventListener("click", (event) => {
     const task = tasks[btnIndex];
     deselectTaskTitle(task);
   }
+  if (event.target.classList.contains("edit-btn")) {
+    const tasks = document.querySelectorAll(".task");
+    tasks.forEach((task) => {
+      deselectTaskTitle(task);
+    });
+  }
 });
 
 //Set edit flag
