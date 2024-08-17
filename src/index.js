@@ -5,7 +5,6 @@ import {
   addTask,
   deleteTask,
   saveTask,
-  swapBtns,
   selectLatestTaskTitle,
   deselectTaskTitle,
   setEditFlag,
@@ -122,5 +121,13 @@ tasksContainer.addEventListener("click", (event) => {
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("priority-btn")) {
     setPriorityStyling();
+  }
+});
+
+tasksContainer.addEventListener("mouseover", (event) => {
+  if (event.target.classList.contains("task")) {
+    const thisTask = event.target;
+    const editBtn = thisTask.querySelector(".edit-btn");
+    editBtn.disabled = false;
   }
 });
