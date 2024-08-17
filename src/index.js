@@ -14,6 +14,7 @@ import {
   disableInputs,
   togglePriority,
   setPriorityStyling,
+  findTaskEditingStatus,
 } from "./barrel";
 
 renderTasks();
@@ -128,6 +129,11 @@ tasksContainer.addEventListener("mouseover", (event) => {
   if (event.target.classList.contains("task")) {
     const thisTask = event.target;
     const editBtn = thisTask.querySelector(".edit-btn");
-    editBtn.disabled = false;
+    console.log(findTaskEditingStatus());
+    if (findTaskEditingStatus()) {
+      editBtn.disabled = true;
+    } else {
+      editBtn.disabled = false;
+    }
   }
 });
