@@ -1,6 +1,6 @@
 import { removeTask, taskLibrary } from "../barrel";
 
-export { deleteTask, saveTask, setDateLimit };
+export { deleteTask, saveTask, setDateLimit, findTaskEditingStatus };
 
 function deleteTask(deleteBtn) {
   const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -42,4 +42,13 @@ function setDateLimit() {
     todaysDate = formatDate(todaysDate);
     dueDatePicker.setAttribute("min", todaysDate);
   });
+}
+
+function findTaskEditingStatus() {
+  for (const task of taskLibrary) {
+    if (task.editFlag) {
+      return true;
+    }
+  }
+  return false;
 }
