@@ -19,4 +19,9 @@ export {
   togglePriority,
 } from "./components/task-library.js";
 
-export { deleteTask, saveTask, setDateLimit } from "./components/main.js";
+export {
+  deleteTask,
+  saveTask,
+  setDateLimit,
+  findTaskEditingStatus,
+} from "./components/main.js";
