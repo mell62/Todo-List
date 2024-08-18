@@ -8,10 +8,16 @@ export {
   sortTaskLibrary,
 };
 
-function deleteTask(deleteBtn) {
-  const deleteBtns = document.querySelectorAll(".delete-btn");
-  const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, deleteBtn);
-  removeTask(deleteBtnIndex);
+function deleteTask(btn) {
+  if (btn.classList.contains("delete-btn")) {
+    const deleteBtns = document.querySelectorAll(".delete-btn");
+    const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, btn);
+    removeTask(deleteBtnIndex);
+  } else if (btn.classList.contains("finish-task-btn")) {
+    const finishBtns = document.querySelectorAll(".finish-task-btn");
+    const finishBtnIndex = Array.prototype.indexOf.call(finishBtns, btn);
+    removeTask(finishBtnIndex);
+  }
 }
 
 function saveTask(doneBtn, newTitle, dueDate, taskDescription) {
