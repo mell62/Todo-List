@@ -1,6 +1,12 @@
-import { removeTask, taskLibrary } from "../barrel";
+import { removeTask, taskLibrary, removeAllTasks } from "../barrel";
 
-export { deleteTask, saveTask, setDateLimit, findTaskEditingStatus };
+export {
+  deleteTask,
+  saveTask,
+  setDateLimit,
+  findTaskEditingStatus,
+  sortTaskLibrary,
+};
 
 function deleteTask(deleteBtn) {
   const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -46,4 +52,45 @@ function setDateLimit() {
 
 function findTaskEditingStatus() {
   return taskLibrary.some((task) => task.editFlag);
+}
+
+function findHighPriorityTasks() {
+  return taskLibrary.filter((task) => task.highPriority);
+}
+
+function findMediumPriorityTasks() {
+  return taskLibrary.filter((task) => task.mediumPriority);
+}
+
+function findLowPriorityTasks() {
+  return taskLibrary.filter((task) => task.lowPriority);
+}
+
+function pushHighPriorityTasks(highPriorityTasks) {
+  highPriorityTasks.forEach((task) => {
+    taskLibrary.push(task);
+  });
+}
+
+function pushMediumPriorityTasks(mediumPriorityTasks) {
+  mediumPriorityTasks.forEach((task) => {
+    taskLibrary.push(task);
+  });
+}
+
+function pushLowPriorityTasks(lowPriorityTasks) {
+  lowPriorityTasks.forEach((task) => {
+    taskLibrary.push(task);
+  });
+}
+function sortTaskLibrary() {
+  let highPriorityTasks = findHighPriorityTasks();
+  let mediumPriorityTasks = findMediumPriorityTasks();
+  let lowPriorityTasks = findLowPriorityTasks();
+
+  removeAllTasks();
+  pushHighPriorityTasks(highPriorityTasks);
+  pushMediumPriorityTasks(mediumPriorityTasks);
+  pushLowPriorityTasks(lowPriorityTasks);
+  console.log(taskLibrary);
 }
