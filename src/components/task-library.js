@@ -5,6 +5,7 @@ export {
   removeTask,
   setEditFlag,
   togglePriority,
+  removeAllTasks,
 };
 
 let taskFactory = (title) => {
@@ -37,6 +38,10 @@ function addTask(title) {
 
 function removeTask(index) {
   taskLibrary.splice(index, 1);
+}
+
+function removeAllTasks() {
+  taskLibrary.splice(0, taskLibrary.length);
 }
 
 function setAllEditFlagsFalse() {
