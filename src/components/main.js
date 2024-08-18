@@ -45,10 +45,5 @@ function setDateLimit() {
 }
 
 function findTaskEditingStatus() {
-  for (const task of taskLibrary) {
-    if (task.editFlag) {
-      return true;
-    }
-  }
-  return false;
+  return taskLibrary.some((task) => task.editFlag);
 }
