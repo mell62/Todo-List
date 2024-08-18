@@ -33,7 +33,10 @@ addBtn.addEventListener("click", selectLatestTaskTitle);
 
 //Delete tasks
 tasksContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("delete-btn")) {
+  if (
+    event.target.classList.contains("delete-btn") ||
+    event.target.classList.contains("finish-task-btn")
+  ) {
     deleteTask(event.target);
     renderTasks();
     renderTasksEditable();
