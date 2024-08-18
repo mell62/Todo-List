@@ -128,12 +128,13 @@ tasksContainer.addEventListener("click", (event) => {
 tasksContainer.addEventListener("mouseover", (event) => {
   if (event.target.classList.contains("task")) {
     const thisTask = event.target;
-    const editBtn = thisTask.querySelector(".edit-btn");
-    console.log(findTaskEditingStatus());
-    if (findTaskEditingStatus()) {
-      editBtn.disabled = true;
-    } else {
-      editBtn.disabled = false;
+    if (thisTask.querySelector(".edit-btn")) {
+      const editBtn = thisTask.querySelector(".edit-btn");
+      if (findTaskEditingStatus()) {
+        editBtn.disabled = true;
+      } else {
+        editBtn.disabled = false;
+      }
     }
   }
 });
