@@ -15,6 +15,7 @@ import {
   togglePriority,
   setPriorityStyling,
   findTaskEditingStatus,
+  sortTaskLibrary,
 } from "./barrel";
 
 renderTasks();
@@ -136,5 +137,13 @@ tasksContainer.addEventListener("mouseover", (event) => {
         editBtn.disabled = false;
       }
     }
+  }
+});
+
+//Sort tasks
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("done-btn")) {
+    sortTaskLibrary();
+    renderTasks();
   }
 });
