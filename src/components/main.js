@@ -66,6 +66,30 @@ function findLowPriorityTasks() {
   return taskLibrary.filter((task) => task.lowPriority);
 }
 
+function sortHighPriorityTasks() {
+  return findHighPriorityTasks().sort((firstTask, nextTask) =>
+    firstTask.taskTitle.toLowerCase() > nextTask.taskTitle.toLowerCase()
+      ? 1
+      : -1
+  );
+}
+
+function sortMediumPriorityTasks() {
+  return findMediumPriorityTasks().sort((firstTask, nextTask) =>
+    firstTask.taskTitle.toLowerCase() > nextTask.taskTitle.toLowerCase()
+      ? 1
+      : -1
+  );
+}
+
+function sortLowPriorityTasks() {
+  return findLowPriorityTasks().sort((firstTask, nextTask) =>
+    firstTask.taskTitle.toLowerCase() > nextTask.taskTitle.toLowerCase()
+      ? 1
+      : -1
+  );
+}
+
 function pushHighPriorityTasks(highPriorityTasks) {
   highPriorityTasks.forEach((task) => {
     taskLibrary.push(task);
@@ -84,13 +108,12 @@ function pushLowPriorityTasks(lowPriorityTasks) {
   });
 }
 function sortTaskLibrary() {
-  let highPriorityTasks = findHighPriorityTasks();
-  let mediumPriorityTasks = findMediumPriorityTasks();
-  let lowPriorityTasks = findLowPriorityTasks();
+  let highPriorityTasks = sortHighPriorityTasks();
+  let mediumPriorityTasks = sortMediumPriorityTasks();
+  let lowPriorityTasks = sortLowPriorityTasks();
 
   removeAllTasks();
   pushHighPriorityTasks(highPriorityTasks);
   pushMediumPriorityTasks(mediumPriorityTasks);
   pushLowPriorityTasks(lowPriorityTasks);
-  console.log(taskLibrary);
 }
