@@ -38,6 +38,7 @@ function createTask(task) {
   taskElement.appendChild(createTaskDescription(task));
   taskElement.appendChild(createDatePicker(task));
   taskElement.appendChild(createPriorities());
+  taskElement.appendChild(createFinishBtn());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
 }
@@ -126,6 +127,16 @@ function createPriorities() {
   priorityContainer.appendChild(lowPriorityBtn);
 
   return priorityContainer;
+}
+
+function createFinishBtn() {
+  const finishBtn = document.createElement("button");
+
+  finishBtn.classList.toggle("finish-task-btn");
+
+  finishBtn.textContent = "Finish Task";
+
+  return finishBtn;
 }
 
 function swapBtns(btn) {
