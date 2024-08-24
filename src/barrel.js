@@ -18,6 +18,8 @@ export {
   setEditFlag,
   togglePriority,
   removeAllTasks,
+  moveAllTasks,
+  removeAllTemporaryTasks,
 } from "./components/task-library.js";
 
 export {
@@ -26,4 +28,5 @@ export {
   setDateLimit,
   findTaskEditingStatus,
   sortTaskLibrary,
+  loadTodaysTasks,
 } from "./components/main.js";
