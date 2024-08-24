@@ -1,4 +1,9 @@
-import { removeTask, taskLibrary, removeAllTasks } from "../barrel";
+import {
+  removeTask,
+  taskLibrary,
+  removeAllTasks,
+  moveAllTasks,
+} from "../barrel";
 
 export {
   deleteTask,
@@ -6,6 +11,7 @@ export {
   setDateLimit,
   findTaskEditingStatus,
   sortTaskLibrary,
+  loadTodaysTasks,
 };
 
 function deleteTask(btn) {
@@ -122,4 +128,24 @@ function sortTaskLibrary() {
   pushHighPriorityTasks(highPriorityTasks);
   pushMediumPriorityTasks(mediumPriorityTasks);
   pushLowPriorityTasks(lowPriorityTasks);
+}
+
+function findTodaysTasks() {
+  let todaysDate = new Date();
+  todaysDate = formatDate(todaysDate);
+
+  const todaysTasks = taskLibrary.filter((task) => {
+    let taskDate = task.dueDate;
+    return taskDate === todaysDate;
+  });
+
+  return todaysTasks;
+}
+
+function loadTodaysTasks() {
+  let todaysTasks = findTodaysTasks();
+  moveAllTasks();
+  todaysTasks.forEach((task) => {
+    taskLibrary.push(task);
+  });
 }
