@@ -6,6 +6,8 @@ export {
   setEditFlag,
   togglePriority,
   removeAllTasks,
+  moveAllTasks,
+  removeAllTemporaryTasks,
 };
 
 let taskFactory = (title) => {
@@ -30,6 +32,7 @@ let taskFactory = (title) => {
 let defaultTask = taskFactory("Sample task");
 
 let taskLibrary = [defaultTask];
+let temporaryTaskLibrary = [];
 
 function addTask(title) {
   let newTask = taskFactory(title);
@@ -66,4 +69,15 @@ function setPrioritiesFalse(index) {
 function togglePriority(priority, index) {
   setPrioritiesFalse(index); //To set other priorities as false
   taskLibrary[index][priority] = !taskLibrary[index][priority];
+}
+
+function moveAllTasks() {
+  taskLibrary.forEach((task) => {
+    temporaryTaskLibrary.push(task);
+  });
+  removeAllTasks();
+}
+
+function removeAllTemporaryTasks() {
+  temporaryTaskLibrary.splice(0, temporaryTaskLibrary.length);
 }
