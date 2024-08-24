@@ -22,6 +22,9 @@ renderTasks();
 
 const tasksContainer = document.querySelector(".tasks");
 const addBtn = document.querySelector(".add-task");
+const everythingBtn = document.querySelector(".everything-btn");
+
+everythingBtn.querySelector("click", renderTasks);
 
 // Add tasks
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
