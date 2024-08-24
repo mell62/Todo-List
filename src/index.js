@@ -16,6 +16,7 @@ import {
   setPriorityStyling,
   findTaskEditingStatus,
   sortTaskLibrary,
+  loadTodaysTasks,
 } from "./barrel";
 
 renderTasks();
@@ -28,6 +29,11 @@ const todayBtn = document.querySelector(".today-btn");
 everythingBtn.addEventListener("click", renderTasks);
 everythingBtn.addEventListener("click", renderTasksEditable);
 everythingBtn.addEventListener("click", enableInputs);
+
+todayBtn.addEventListener("click", loadTodaysTasks);
+todayBtn.addEventListener("click", renderTasks);
+todayBtn.addEventListener("click", renderTasksEditable);
+todayBtn.addEventListener("click", enableInputs);
 
 // Add tasks
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
