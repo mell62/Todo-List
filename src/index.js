@@ -23,8 +23,11 @@ renderTasks();
 const tasksContainer = document.querySelector(".tasks");
 const addBtn = document.querySelector(".add-task");
 const everythingBtn = document.querySelector(".everything-btn");
+const todayBtn = document.querySelector(".today-btn");
 
-everythingBtn.querySelector("click", renderTasks);
+everythingBtn.addEventListener("click", renderTasks);
+everythingBtn.addEventListener("click", renderTasksEditable);
+everythingBtn.addEventListener("click", enableInputs);
 
 // Add tasks
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
