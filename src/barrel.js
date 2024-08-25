@@ -32,3 +32,5 @@ export {
   loadTodaysTasks,
   loadThisWeeksTasks,
 } from "./components/main.js";
+
+export { projectsArray } from "./components/projects.js";
