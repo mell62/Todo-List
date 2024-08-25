@@ -8,6 +8,7 @@ export {
   enableInputs,
   disableInputs,
   setPriorityStyling,
+  renderProjects,
 };
 import {
   taskLibrary,
@@ -306,4 +307,31 @@ function disableAllEditBtns() {
     const editBtn = task.querySelector(".edit-btn");
     editBtn.disabled = true;
   });
+}
+
+//TASKBAR RELATED
+
+const projectsContainer = document.querySelector(".projects-todo");
+
+function renderProjects() {
+  cleanProjects();
+  projectsArray.forEach((project, index) => {
+    createProject(index);
+  });
+}
+
+function cleanProjects() {
+  const projects = document.querySelectorAll(".project");
+  projects.forEach((project) => {
+    projectsContainer.removeChild(project);
+  });
+}
+
+function createProject(index) {
+  const projectItemContainer = document.createElement("div");
+  const project = document.createElement("button");
+  project.textContent = projectsArray[index];
+  project.classList.toggle("project");
+  projectItemContainer.appendChild(project);
+  projectsContainer.appendChild(projectItemContainer);
 }

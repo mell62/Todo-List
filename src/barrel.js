@@ -8,6 +8,7 @@ export {
   enableInputs,
   disableInputs,
   setPriorityStyling,
+  renderProjects,
 } from "./components/user-interface.js";
 
 export {

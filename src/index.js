@@ -20,9 +20,11 @@ import {
   loadTodaysTasks,
   revertTaskLibrary,
   loadThisWeeksTasks,
+  renderProjects,
 } from "./barrel";
 
 renderTasks();
+renderProjects();
 
 const tasksContainer = document.querySelector(".tasks");
 const addBtn = document.querySelector(".add-task");
