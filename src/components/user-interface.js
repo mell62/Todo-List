@@ -9,7 +9,12 @@ export {
   disableInputs,
   setPriorityStyling,
 };
-import { taskLibrary, setEditFlag, setDateLimit } from "../barrel";
+import {
+  taskLibrary,
+  setEditFlag,
+  setDateLimit,
+  projectsArray,
+} from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
@@ -34,6 +39,7 @@ function createTask(task) {
   const taskElement = document.createElement("div");
   taskElement.appendChild(createEditBtn());
   taskElement.appendChild(createTaskTitle(task));
+  taskElement.appendChild(createProjectInput());
   taskElement.appendChild(createDeleteBtn());
   taskElement.appendChild(createTaskDescription(task));
   taskElement.appendChild(createDatePicker(task));
@@ -51,6 +57,19 @@ function createTaskTitle(task) {
   taskTitle.disabled = true;
   taskTitleContainer.appendChild(taskTitle);
   return taskTitleContainer;
+}
+
+function createProjectInput() {
+  const projectInputContainer = document.createElement("div");
+  const projectInput = document.createElement("select");
+  projectsArray.forEach((project) => {
+    const projectOption = document.createElement("option");
+    projectOption.setAttribute("value", project);
+    projectOption.textContent = project;
+    projectInput.appendChild(projectOption);
+  });
+  projectInputContainer.appendChild(projectInput);
+  return projectInputContainer;
 }
 
 function createDoneBtn() {
