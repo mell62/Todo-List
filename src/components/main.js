@@ -3,6 +3,7 @@ import {
   taskLibrary,
   removeAllTasks,
   moveAllTasks,
+  revertTaskLibrary,
 } from "../barrel";
 
 export {
@@ -157,7 +158,7 @@ function findThisWeeksTasks() {
 
   let nextWeek = new Date(todaysDate);
   nextWeek.setDate(todaysDate.getDate() + 7);
-
+  revertTaskLibrary();
   let thisWeeksTasks = taskLibrary.filter((task) => {
     let thisDate = new Date(task.dueDate);
     return thisDate >= todaysDate && thisDate <= nextWeek;
