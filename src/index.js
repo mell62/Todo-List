@@ -70,11 +70,13 @@ tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-btn")) {
     const task = event.target.closest(".task");
     const taskTitle = task.querySelector(".task-title");
+    const projectField = task.querySelector(".project-field");
     const dueDateField = task.querySelector(".date-picker");
     const taskDescriptionField = task.querySelector(".task-description");
     saveTask(
       event.target,
       taskTitle.value,
+      projectField.value,
       dueDateField.value,
       taskDescriptionField.value
     );

@@ -28,10 +28,11 @@ function deleteTask(btn) {
   }
 }
 
-function saveTask(doneBtn, newTitle, dueDate, taskDescription) {
+function saveTask(doneBtn, newTitle, project, dueDate, taskDescription) {
   const doneBtns = document.querySelectorAll(".task-editing");
   const doneBtnIndex = Array.prototype.indexOf.call(doneBtns, doneBtn);
   taskLibrary[doneBtnIndex].taskTitle = newTitle;
+  taskLibrary[doneBtnIndex].project = project;
   taskLibrary[doneBtnIndex].dueDate = dueDate;
   taskLibrary[doneBtnIndex].taskDescription = taskDescription;
 }
