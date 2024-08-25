@@ -46,6 +46,7 @@ upcomingBtn.addEventListener("click", renderTasksEditable);
 upcomingBtn.addEventListener("click", enableInputs);
 
 // Add tasks
+addBtn.addEventListener("click", revertTaskLibrary);
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
 addBtn.addEventListener("click", renderTasks);
 addBtn.addEventListener("click", renderLatestTaskEditable);
