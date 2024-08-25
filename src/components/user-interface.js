@@ -62,6 +62,7 @@ function createTaskTitle(task) {
 function createProjectInput() {
   const projectInputContainer = document.createElement("div");
   const projectInput = document.createElement("select");
+  projectInput.classList.toggle("project-field");
   projectsArray.forEach((project) => {
     const projectOption = document.createElement("option");
     projectOption.setAttribute("value", project);
