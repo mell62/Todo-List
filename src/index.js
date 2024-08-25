@@ -17,6 +17,7 @@ import {
   findTaskEditingStatus,
   sortTaskLibrary,
   loadTodaysTasks,
+  revertTaskLibrary,
 } from "./barrel";
 
 renderTasks();
@@ -26,6 +27,7 @@ const addBtn = document.querySelector(".add-task");
 const everythingBtn = document.querySelector(".everything-btn");
 const todayBtn = document.querySelector(".today-btn");
 
+everythingBtn.addEventListener("click", revertTaskLibrary);
 everythingBtn.addEventListener("click", renderTasks);
 everythingBtn.addEventListener("click", renderTasksEditable);
 everythingBtn.addEventListener("click", enableInputs);
