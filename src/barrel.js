@@ -30,4 +30,5 @@ export {
   findTaskEditingStatus,
   sortTaskLibrary,
   loadTodaysTasks,
+  loadThisWeeksTasks,
 } from "./components/main.js";

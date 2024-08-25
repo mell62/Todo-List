@@ -12,6 +12,7 @@ export {
   findTaskEditingStatus,
   sortTaskLibrary,
   loadTodaysTasks,
+  loadThisWeeksTasks,
 };
 
 function deleteTask(btn) {
@@ -146,6 +147,29 @@ function loadTodaysTasks() {
   let todaysTasks = findTodaysTasks();
   moveAllTasks();
   todaysTasks.forEach((task) => {
+    taskLibrary.push(task);
+  });
+}
+
+function findThisWeeksTasks() {
+  let todaysDate = new Date();
+  todaysDate.setHours(0, 0, 0, 0);
+
+  let nextWeek = new Date(todaysDate);
+  nextWeek.setDate(todaysDate.getDate() + 7);
+
+  let thisWeeksTasks = taskLibrary.filter((task) => {
+    let thisDate = new Date(task.dueDate);
+    return thisDate >= todaysDate && thisDate <= nextWeek;
+  });
+
+  return thisWeeksTasks;
+}
+
+function loadThisWeeksTasks() {
+  let thisWeeksTasks = findThisWeeksTasks();
+  moveAllTasks();
+  thisWeeksTasks.forEach((task) => {
     taskLibrary.push(task);
   });
 }
