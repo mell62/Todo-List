@@ -18,6 +18,7 @@ import {
   sortTaskLibrary,
   loadTodaysTasks,
   revertTaskLibrary,
+  loadThisWeeksTasks,
 } from "./barrel";
 
 renderTasks();
@@ -26,6 +27,7 @@ const tasksContainer = document.querySelector(".tasks");
 const addBtn = document.querySelector(".add-task");
 const everythingBtn = document.querySelector(".everything-btn");
 const todayBtn = document.querySelector(".today-btn");
+const upcomingBtn = document.querySelector(".upcoming-btn");
 
 everythingBtn.addEventListener("click", revertTaskLibrary);
 everythingBtn.addEventListener("click", renderTasks);
@@ -36,6 +38,11 @@ todayBtn.addEventListener("click", loadTodaysTasks);
 todayBtn.addEventListener("click", renderTasks);
 todayBtn.addEventListener("click", renderTasksEditable);
 todayBtn.addEventListener("click", enableInputs);
+
+upcomingBtn.addEventListener("click", loadThisWeeksTasks);
+upcomingBtn.addEventListener("click", renderTasks);
+upcomingBtn.addEventListener("click", renderTasksEditable);
+upcomingBtn.addEventListener("click", enableInputs);
 
 // Add tasks
 addBtn.addEventListener("click", addTask.bind(null, "New Task"));
