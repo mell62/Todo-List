@@ -84,9 +84,11 @@ function moveAllTasks() {
 }
 
 function revertTaskLibrary() {
-  removeAllTasks();
-  temporaryTaskLibrary.forEach((task) => {
-    taskLibrary.push(task);
-  });
-  removeAllTemporaryTasks();
+  if (temporaryTaskLibrary.length !== 0) {
+    removeAllTasks();
+    temporaryTaskLibrary.forEach((task) => {
+      taskLibrary.push(task);
+    });
+    removeAllTemporaryTasks();
+  }
 }
