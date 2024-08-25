@@ -20,6 +20,7 @@ export {
   removeAllTasks,
   moveAllTasks,
   removeAllTemporaryTasks,
+  revertTaskLibrary,
 } from "./components/task-library.js";
 
 export {

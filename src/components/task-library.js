@@ -8,6 +8,7 @@ export {
   removeAllTasks,
   moveAllTasks,
   removeAllTemporaryTasks,
+  revertTaskLibrary,
 };
 
 let taskFactory = (title) => {
@@ -47,6 +48,10 @@ function removeAllTasks() {
   taskLibrary.splice(0, taskLibrary.length);
 }
 
+function removeAllTemporaryTasks() {
+  temporaryTaskLibrary.splice(0, temporaryTaskLibrary.length);
+}
+
 function setAllEditFlagsFalse() {
   taskLibrary.forEach((task) => {
     task.editFlag = false;
@@ -78,6 +83,10 @@ function moveAllTasks() {
   removeAllTasks();
 }
 
-function removeAllTemporaryTasks() {
-  temporaryTaskLibrary.splice(0, temporaryTaskLibrary.length);
+function revertTaskLibrary() {
+  removeAllTasks();
+  temporaryTaskLibrary.forEach((task) => {
+    taskLibrary.push(task);
+  });
+  removeAllTemporaryTasks();
 }
