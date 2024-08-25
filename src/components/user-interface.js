@@ -315,8 +315,8 @@ const projectsContainer = document.querySelector(".projects-todo");
 
 function renderProjects() {
   cleanProjects();
-  projectsArray.forEach((project, index) => {
-    createProject(index);
+  projectsArray.forEach((project) => {
+    createProject(project);
   });
 }
 
@@ -327,10 +327,10 @@ function cleanProjects() {
   });
 }
 
-function createProject(index) {
+function createProject(projectName) {
   const projectItemContainer = document.createElement("div");
   const project = document.createElement("button");
-  project.textContent = projectsArray[index];
+  project.textContent = projectName;
   project.classList.toggle("project");
   projectItemContainer.appendChild(project);
   projectsContainer.appendChild(projectItemContainer);
