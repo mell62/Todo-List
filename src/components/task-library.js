@@ -78,13 +78,17 @@ function togglePriority(priority, index) {
 
 function moveAllTasks() {
   taskLibrary.forEach((task) => {
-    temporaryTaskLibrary.push(task);
+    if (!temporaryTaskLibrary.includes(task)) {
+      //Check to prevent duplicating today's tasks
+      temporaryTaskLibrary.push(task);
+    }
   });
   removeAllTasks();
 }
 
 function revertTaskLibrary() {
   if (temporaryTaskLibrary.length !== 0) {
+    //Check to prevent removing all tasks
     removeAllTasks();
     temporaryTaskLibrary.forEach((task) => {
       taskLibrary.push(task);
