@@ -3,6 +3,7 @@ export {
   taskLibrary,
   addTask,
   removeTask,
+  removeTemporaryTask,
   setEditFlag,
   togglePriority,
   removeAllTasks,
@@ -44,6 +45,13 @@ function addTask(title) {
 
 function removeTask(index) {
   taskLibrary.splice(index, 1);
+}
+
+function removeTemporaryTask(task) {
+  let taskIndex = temporaryTaskLibrary.indexOf(task);
+  if (taskIndex !== -1) {
+    temporaryTaskLibrary.splice(taskIndex, 1);
+  }
 }
 
 function removeAllTasks() {

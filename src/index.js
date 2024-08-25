@@ -4,6 +4,7 @@ import {
   renderTasks,
   addTask,
   deleteTask,
+  deleteTemporaryTask,
   saveTask,
   selectLatestTaskTitle,
   deselectTaskTitle,
@@ -51,6 +52,16 @@ addBtn.addEventListener("click", renderLatestTaskEditable);
 addBtn.addEventListener("click", renderTasksEditable);
 addBtn.addEventListener("click", enableInputs);
 addBtn.addEventListener("click", selectLatestTaskTitle);
+
+//Delete temporary tasks
+tasksContainer.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("delete-btn") ||
+    event.target.classList.contains("finish-task-btn")
+  ) {
+    deleteTemporaryTask(event.target);
+  }
+});
 
 //Delete tasks
 tasksContainer.addEventListener("click", (event) => {

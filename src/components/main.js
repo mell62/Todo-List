@@ -4,10 +4,12 @@ import {
   removeAllTasks,
   moveAllTasks,
   revertTaskLibrary,
+  removeTemporaryTask,
 } from "../barrel";
 
 export {
   deleteTask,
+  deleteTemporaryTask,
   saveTask,
   setDateLimit,
   findTaskEditingStatus,
@@ -25,6 +27,20 @@ function deleteTask(btn) {
     const finishBtns = document.querySelectorAll(".finish-task-btn");
     const finishBtnIndex = Array.prototype.indexOf.call(finishBtns, btn);
     removeTask(finishBtnIndex);
+  }
+}
+
+function deleteTemporaryTask(btn) {
+  if (btn.classList.contains("delete-btn")) {
+    const deleteBtns = document.querySelectorAll(".delete-btn");
+    const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, btn);
+    const task = taskLibrary[deleteBtnIndex];
+    removeTemporaryTask(task);
+  } else if (btn.classList.contains("finish-task-btn")) {
+    const finishBtns = document.querySelectorAll(".finish-task-btn");
+    const finishBtnIndex = Array.prototype.indexOf.call(finishBtns, btn);
+    const task = taskLibrary[finishBtnIndex];
+    removeTemporaryTask(task);
   }
 }
 

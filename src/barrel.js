@@ -21,10 +21,12 @@ export {
   moveAllTasks,
   removeAllTemporaryTasks,
   revertTaskLibrary,
+  removeTemporaryTask,
 } from "./components/task-library.js";
 
 export {
   deleteTask,
+  deleteTemporaryTask,
   saveTask,
   setDateLimit,
   findTaskEditingStatus,
