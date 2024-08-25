@@ -13,6 +13,7 @@ export {
 
 let taskFactory = (title) => {
   let taskTitle = title;
+  let project = "General";
   let dueDate;
   let taskDescription = "";
   let highPriority = false;
@@ -21,6 +22,7 @@ let taskFactory = (title) => {
   let editFlag = false;
   return {
     taskTitle,
+    project,
     editFlag,
     dueDate,
     taskDescription,
@@ -79,7 +81,7 @@ function togglePriority(priority, index) {
 function moveAllTasks() {
   taskLibrary.forEach((task) => {
     if (!temporaryTaskLibrary.includes(task)) {
-      //Check to prevent duplicating today's tasks
+      //Check to prevent duplicating tasks
       temporaryTaskLibrary.push(task);
     }
   });
