@@ -22,6 +22,7 @@ import {
   loadThisWeeksTasks,
   renderProjects,
   addProject,
+  findNumberOfProjects,
 } from "./barrel";
 
 renderTasks();
@@ -191,6 +192,7 @@ tasksContainer.addEventListener("click", (event) => {
 });
 
 addProjectBtn.addEventListener("click", () => {
-  addProject("New Project");
+  let numberOfProjects = findNumberOfProjects();
+  addProject(`Project #${numberOfProjects + 1}`);
   renderProjects();
 });

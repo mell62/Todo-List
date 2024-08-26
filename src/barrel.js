@@ -36,4 +36,8 @@ export {
   loadThisWeeksTasks,
 } from "./components/main.js";
 
-export { projectsArray, addProject } from "./components/projects.js";
+export {
+  projectsArray,
+  addProject,
+  findNumberOfProjects,
+} from "./components/projects.js";
