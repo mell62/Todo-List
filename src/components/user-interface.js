@@ -245,7 +245,7 @@ function enablePriorityBtns(task) {
 }
 
 function enableProjectInputs(task) {
-  let projectFields = document.querySelectorAll(".project-field");
+  let projectFields = task.querySelectorAll(".project-field");
   projectFields.forEach((field) => {
     field.disabled = false;
   });
@@ -273,7 +273,7 @@ function disablePriorityBtns(task) {
 }
 
 function disableProjectInputs(task) {
-  let projectFields = document.querySelectorAll(".project-field");
+  let projectFields = task.querySelectorAll(".project-field");
   projectFields.forEach((field) => {
     field.disabled = true;
   });
