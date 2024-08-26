@@ -70,6 +70,7 @@ function createProjectInput() {
     projectOption.textContent = project;
     projectInput.appendChild(projectOption);
   });
+  projectInput.disabled = true;
   projectInputContainer.appendChild(projectInput);
   return projectInputContainer;
 }
@@ -205,6 +206,7 @@ function enableInputs() {
       enableInputElements(task);
       enableTextareaElements(task);
       enablePriorityBtns(task);
+      enableProjectInputs(task);
     }
   });
 }
@@ -216,6 +218,7 @@ function disableInputs() {
       disableInputElements(task);
       disableTextAreaElements(task);
       disablePriorityBtns(task);
+      disableProjectInputs(task);
     }
   });
 }
@@ -241,6 +244,13 @@ function enablePriorityBtns(task) {
   });
 }
 
+function enableProjectInputs(task) {
+  let projectFields = document.querySelectorAll(".project-field");
+  projectFields.forEach((field) => {
+    field.disabled = false;
+  });
+}
+
 function disableInputElements(task) {
   let inputFields = task.querySelectorAll("input");
   inputFields.forEach((input) => {
@@ -259,6 +269,13 @@ function disablePriorityBtns(task) {
   let priorityBtns = task.querySelectorAll(".priority-btn");
   priorityBtns.forEach((btn) => {
     btn.disabled = true;
+  });
+}
+
+function disableProjectInputs(task) {
+  let projectFields = document.querySelectorAll(".project-field");
+  projectFields.forEach((field) => {
+    field.disabled = true;
   });
 }
 
