@@ -148,13 +148,6 @@ tasksContainer.addEventListener("click", (event) => {
   }
 });
 
-//Refresh projects list of inputs
-tasksContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("edit-btn")) {
-    reloadProjectInputs();
-  }
-});
-
 //Set priority flag
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("priority-btn")) {
@@ -203,4 +196,9 @@ addProjectBtn.addEventListener("click", () => {
   let numberOfProjects = findNumberOfProjects();
   addProject(`Project #${numberOfProjects + 1}`);
   renderProjects();
+});
+
+//Refresh projects list of inputs
+addProjectBtn.addEventListener("click", () => {
+  reloadProjectInputs();
 });
