@@ -23,6 +23,7 @@ import {
   renderProjects,
   addProject,
   findNumberOfProjects,
+  reloadProjectInputs,
 } from "./barrel";
 
 renderTasks();
@@ -144,6 +145,13 @@ tasksContainer.addEventListener("click", (event) => {
     renderTasksEditable();
     enableInputs();
     disableInputs();
+  }
+});
+
+//Refresh projects list of inputs
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("edit-btn")) {
+    reloadProjectInputs();
   }
 });
 

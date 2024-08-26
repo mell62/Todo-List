@@ -9,6 +9,7 @@ export {
   disableInputs,
   setPriorityStyling,
   renderProjects,
+  reloadProjectInputs,
 } from "./components/user-interface.js";
 
 export {

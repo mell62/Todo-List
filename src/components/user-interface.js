@@ -9,6 +9,7 @@ export {
   disableInputs,
   setPriorityStyling,
   renderProjects,
+  reloadProjectInputs,
 };
 import {
   taskLibrary,
@@ -323,6 +324,31 @@ function disableAllEditBtns() {
   tasks.forEach((task) => {
     const editBtn = task.querySelector(".edit-btn");
     editBtn.disabled = true;
+  });
+}
+
+function reloadProjectInputs() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    removeAllProjectInputs(task);
+    loadAllProjectInputs(task);
+  });
+}
+
+function removeAllProjectInputs(task) {
+  const projectInput = task.querySelector(".project-field");
+  while (projectInput.firstChild) {
+    projectInput.removeChild(projectInput.firstChild);
+  }
+}
+
+function loadAllProjectInputs(task) {
+  const projectInput = task.querySelector(".project-field");
+  projectsArray.forEach((project) => {
+    const projectOption = document.createElement("option");
+    projectOption.setAttribute("value", project);
+    projectOption.textContent = project;
+    projectInput.appendChild(projectOption);
   });
 }
 
