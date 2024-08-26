@@ -35,6 +35,7 @@ export {
   sortTaskLibrary,
   loadTodaysTasks,
   loadThisWeeksTasks,
+  loadProjectTasks,
 } from "./components/main.js";
 
 export {

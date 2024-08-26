@@ -24,6 +24,7 @@ import {
   addProject,
   findNumberOfProjects,
   reloadProjectInputs,
+  loadProjectTasks,
 } from "./barrel";
 
 renderTasks();
@@ -35,6 +36,7 @@ const everythingBtn = document.querySelector(".everything-btn");
 const todayBtn = document.querySelector(".today-btn");
 const upcomingBtn = document.querySelector(".upcoming-btn");
 const addProjectBtn = document.querySelector(".add-project-btn");
+const taskBar = document.querySelector(".taskbar");
 
 everythingBtn.addEventListener("click", revertTaskLibrary);
 everythingBtn.addEventListener("click", renderTasks);
@@ -201,4 +203,13 @@ addProjectBtn.addEventListener("click", () => {
 //Refresh projects list of inputs
 addProjectBtn.addEventListener("click", () => {
   reloadProjectInputs();
+});
+
+taskBar.addEventListener("click", (event) => {
+  if (event.target.classList.contains("project")) {
+    loadProjectTasks(event.target.innerText);
+    renderTasks();
+    renderTasksEditable();
+    enableInputs();
+  }
 });

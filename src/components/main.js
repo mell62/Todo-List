@@ -16,6 +16,7 @@ export {
   sortTaskLibrary,
   loadTodaysTasks,
   loadThisWeeksTasks,
+  loadProjectTasks,
 };
 
 function deleteTask(btn) {
@@ -152,6 +153,7 @@ function sortTaskLibrary() {
 function findTodaysTasks() {
   let todaysDate = new Date();
   todaysDate = formatDate(todaysDate);
+  revertTaskLibrary();
 
   const todaysTasks = taskLibrary.filter((task) => {
     let taskDate = task.dueDate;
@@ -188,6 +190,20 @@ function loadThisWeeksTasks() {
   let thisWeeksTasks = findThisWeeksTasks();
   moveAllTasks();
   thisWeeksTasks.forEach((task) => {
+    taskLibrary.push(task);
+  });
+}
+
+function findProjectTasks(projectName) {
+  revertTaskLibrary();
+  let projectTasks = taskLibrary.filter((task) => task.project === projectName);
+  return projectTasks;
+}
+
+function loadProjectTasks(projectName) {
+  let projectTasks = findProjectTasks(projectName);
+  moveAllTasks();
+  projectTasks.forEach((task) => {
     taskLibrary.push(task);
   });
 }
