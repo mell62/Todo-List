@@ -321,7 +321,7 @@ function renderProjects() {
 }
 
 function cleanProjects() {
-  const projects = document.querySelectorAll(".project");
+  const projects = document.querySelectorAll(".project-item");
   projects.forEach((project) => {
     projectsContainer.removeChild(project);
   });
@@ -329,6 +329,7 @@ function cleanProjects() {
 
 function createProject(projectName) {
   const projectItemContainer = document.createElement("div");
+  projectItemContainer.classList.toggle("project-item");
   const project = document.createElement("button");
   project.textContent = projectName;
   project.classList.toggle("project");
