@@ -25,6 +25,8 @@ import {
   findNumberOfProjects,
   reloadProjectInputs,
   loadProjectTasks,
+  createProjectHeader,
+  removeProjectHeader,
 } from "./barrel";
 
 renderTasks();
@@ -42,16 +44,19 @@ everythingBtn.addEventListener("click", revertTaskLibrary);
 everythingBtn.addEventListener("click", renderTasks);
 everythingBtn.addEventListener("click", renderTasksEditable);
 everythingBtn.addEventListener("click", enableInputs);
+everythingBtn.addEventListener("click", removeProjectHeader);
 
 todayBtn.addEventListener("click", loadTodaysTasks);
 todayBtn.addEventListener("click", renderTasks);
 todayBtn.addEventListener("click", renderTasksEditable);
 todayBtn.addEventListener("click", enableInputs);
+todayBtn.addEventListener("click", removeProjectHeader);
 
 upcomingBtn.addEventListener("click", loadThisWeeksTasks);
 upcomingBtn.addEventListener("click", renderTasks);
 upcomingBtn.addEventListener("click", renderTasksEditable);
 upcomingBtn.addEventListener("click", enableInputs);
+upcomingBtn.addEventListener("click", removeProjectHeader);
 
 // Add tasks
 addBtn.addEventListener("click", revertTaskLibrary);
@@ -203,6 +208,12 @@ addProjectBtn.addEventListener("click", () => {
 //Refresh projects list of inputs
 addProjectBtn.addEventListener("click", () => {
   reloadProjectInputs();
+});
+
+taskBar.addEventListener("click", (event) => {
+  if (event.target.classList.contains("project")) {
+    createProjectHeader(event.target.innerText);
+  }
 });
 
 taskBar.addEventListener("click", (event) => {

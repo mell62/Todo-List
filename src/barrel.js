@@ -10,6 +10,8 @@ export {
   setPriorityStyling,
   renderProjects,
   reloadProjectInputs,
+  createProjectHeader,
+  removeProjectHeader,
 } from "./components/user-interface.js";
 
 export {

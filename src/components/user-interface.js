@@ -10,6 +10,8 @@ export {
   setPriorityStyling,
   renderProjects,
   reloadProjectInputs,
+  createProjectHeader,
+  removeProjectHeader,
 };
 import {
   taskLibrary,
@@ -352,6 +354,35 @@ function loadAllProjectInputs(task) {
     projectOption.textContent = project;
     projectInput.appendChild(projectOption);
   });
+}
+
+function createProjectHeader(projectName) {
+  removeProjectHeader();
+
+  const tasksPane = document.querySelector(".tasks");
+
+  const projectHeaderContainer = document.createElement("div");
+  const projectHeader = document.createElement("div");
+  const projectHeaderBtnContainer = document.createElement("div");
+  const renameProjectBtn = document.createElement("button");
+
+  projectHeaderContainer.classList.toggle("project-header-container");
+
+  projectHeader.textContent = projectName;
+  renameProjectBtn.textContent = "🖉";
+
+  projectHeaderBtnContainer.appendChild(renameProjectBtn);
+  projectHeaderContainer.appendChild(projectHeader);
+  projectHeaderContainer.appendChild(projectHeaderBtnContainer);
+  tasksPane.insertBefore(projectHeaderContainer, tasksPane.firstChild);
+}
+
+function removeProjectHeader() {
+  const tasksPane = document.querySelector(".tasks");
+  if (tasksPane.querySelector(".project-header-container")) {
+    const projectHeader = tasksPane.querySelector(".project-header-container");
+    projectHeader.remove();
+  }
 }
 
 //TASKBAR RELATED
