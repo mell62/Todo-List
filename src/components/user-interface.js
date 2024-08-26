@@ -41,7 +41,7 @@ function createTask(task) {
   const taskElement = document.createElement("div");
   taskElement.appendChild(createEditBtn());
   taskElement.appendChild(createTaskTitle(task));
-  taskElement.appendChild(createProjectInput());
+  taskElement.appendChild(createProjectInput(task));
   taskElement.appendChild(createDeleteBtn());
   taskElement.appendChild(createTaskDescription(task));
   taskElement.appendChild(createDatePicker(task));
@@ -61,7 +61,7 @@ function createTaskTitle(task) {
   return taskTitleContainer;
 }
 
-function createProjectInput() {
+function createProjectInput(task) {
   const projectInputContainer = document.createElement("div");
   const projectInput = document.createElement("select");
   projectInput.classList.toggle("project-field");
@@ -71,6 +71,7 @@ function createProjectInput() {
     projectOption.textContent = project;
     projectInput.appendChild(projectOption);
   });
+  projectInput.value = task.project;
   projectInput.disabled = true;
   projectInputContainer.appendChild(projectInput);
   return projectInputContainer;
