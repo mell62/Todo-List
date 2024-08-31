@@ -27,6 +27,18 @@ import {
   loadProjectTasks,
   createProjectHeader,
   removeProjectHeader,
+  renderNotes,
+  addNote,
+  deleteNote,
+  saveNote,
+  selectLatestNoteTitle,
+  deselectNoteTitle,
+  setNoteEditFlag,
+  renderNotesEditable,
+  renderLatestNoteEditable,
+  enableNoteInputs,
+  disableNoteInputs,
+  findNoteEditingStatus,
 } from "./barrel";
 
 renderTasks();
@@ -39,6 +51,7 @@ const todayBtn = document.querySelector(".today-btn");
 const upcomingBtn = document.querySelector(".upcoming-btn");
 const addProjectBtn = document.querySelector(".add-project-btn");
 const taskBar = document.querySelector(".taskbar");
+const notesBtn = document.querySelector(".notes-btn");
 
 everythingBtn.addEventListener("click", revertTaskLibrary);
 everythingBtn.addEventListener("click", renderTasks);
@@ -222,5 +235,101 @@ taskBar.addEventListener("click", (event) => {
     renderTasks();
     renderTasksEditable();
     enableInputs();
+  }
+});
+
+//NOTES RELATED
+
+notesBtn.addEventListener("click", renderNotes);
+
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("add-note-btn")) {
+    addNote("New Note");
+    renderNotes();
+    renderLatestNoteEditable();
+    renderNotesEditable();
+    enableNoteInputs();
+    selectLatestNoteTitle();
+  }
+});
+
+//Delete notes
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("note-delete-btn")) {
+    deleteNote(event.target);
+    renderNotes();
+    renderNotesEditable();
+    enableNoteInputs();
+  }
+});
+
+//Save notes
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("note-done-btn")) {
+    const note = event.target.closest(".note");
+    const noteTitle = note.querySelector(".note-title");
+    const noteDescriptionField = note.querySelector(".note-description");
+    saveNote(event.target, noteTitle.value, noteDescriptionField.value);
+  }
+});
+
+//Deselect note title
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("note-done-btn")) {
+    const editingBtns = document.querySelectorAll(".note-editing");
+    const notes = document.querySelectorAll(".note");
+    const btnIndex = Array.prototype.indexOf.call(editingBtns, event.target);
+    const note = notes[btnIndex];
+    deselectNoteTitle(note);
+  }
+  if (event.target.classList.contains("note-edit-btn")) {
+    const notes = document.querySelectorAll(".note");
+    notes.forEach((note) => {
+      deselectNoteTitle(note);
+    });
+  }
+});
+
+//Set note edit flag
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("note-edit-btn")) {
+    const noteBtns = document.querySelectorAll(".note-editing");
+    const btnIndex = Array.prototype.indexOf.call(noteBtns, event.target);
+    setNoteEditFlag(true, btnIndex);
+  }
+});
+
+//Un-set note edit flag
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("note-done-btn")) {
+    const noteBtns = document.querySelectorAll(".note-editing");
+    const btnIndex = Array.prototype.indexOf.call(noteBtns, event.target);
+    setNoteEditFlag(false, btnIndex);
+  }
+});
+
+//Swap note's done and edit buttons
+tasksContainer.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("note-done-btn") ||
+    event.target.classList.contains("note-edit-btn")
+  ) {
+    renderNotesEditable();
+    enableNoteInputs();
+    disableNoteInputs();
+  }
+});
+
+tasksContainer.addEventListener("mouseover", (event) => {
+  if (event.target.classList.contains("note")) {
+    const thisNote = event.target;
+    if (thisNote.querySelector(".note-edit-btn")) {
+      const editBtn = thisNote.querySelector(".note-edit-btn");
+      if (findNoteEditingStatus()) {
+        editBtn.disabled = true;
+      } else {
+        editBtn.disabled = false;
+      }
+    }
   }
 });

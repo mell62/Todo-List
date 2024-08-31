@@ -12,6 +12,14 @@ export {
   reloadProjectInputs,
   createProjectHeader,
   removeProjectHeader,
+  renderNotes,
+  swapNoteBtns,
+  selectLatestNoteTitle,
+  deselectNoteTitle,
+  renderNotesEditable,
+  renderLatestNoteEditable,
+  enableNoteInputs,
+  disableNoteInputs,
 } from "./components/user-interface.js";
 
 export {
@@ -38,6 +46,9 @@ export {
   loadTodaysTasks,
   loadThisWeeksTasks,
   loadProjectTasks,
+  deleteNote,
+  saveNote,
+  findNoteEditingStatus,
 } from "./components/main.js";
 
 export {
@@ -45,3 +56,11 @@ export {
   addProject,
   findNumberOfProjects,
 } from "./components/projects.js";
+
+export {
+  notesLibrary,
+  addNote,
+  removeNote,
+  removeAllNotes,
+  setNoteEditFlag,
+} from "./components/notes.js";

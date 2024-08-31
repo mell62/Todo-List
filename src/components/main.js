@@ -5,6 +5,9 @@ import {
   moveAllTasks,
   revertTaskLibrary,
   removeTemporaryTask,
+  removeNote,
+  notesLibrary,
+  removeAllNotes,
 } from "../barrel";
 
 export {
@@ -17,6 +20,9 @@ export {
   loadTodaysTasks,
   loadThisWeeksTasks,
   loadProjectTasks,
+  deleteNote,
+  saveNote,
+  findNoteEditingStatus,
 };
 
 function deleteTask(btn) {
@@ -206,4 +212,25 @@ function loadProjectTasks(projectName) {
   projectTasks.forEach((task) => {
     taskLibrary.push(task);
   });
+}
+
+// NOTES RELATED
+
+function deleteNote(btn) {
+  if (btn.classList.contains("note-delete-btn")) {
+    const deleteBtns = document.querySelectorAll(".note-delete-btn");
+    const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, btn);
+    removeNote(deleteBtnIndex);
+  }
+}
+
+function saveNote(doneBtn, newTitle, noteDescription) {
+  const doneBtns = document.querySelectorAll(".note-editing");
+  const doneBtnIndex = Array.prototype.indexOf.call(doneBtns, doneBtn);
+  notesLibrary[doneBtnIndex].noteTitle = newTitle;
+  notesLibrary[doneBtnIndex].noteDescription = noteDescription;
+}
+
+function findNoteEditingStatus() {
+  return notesLibrary.some((note) => note.editFlag);
 }

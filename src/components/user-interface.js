@@ -12,17 +12,31 @@ export {
   reloadProjectInputs,
   createProjectHeader,
   removeProjectHeader,
+  renderNotes,
+  swapNoteBtns,
+  selectLatestNoteTitle,
+  deselectNoteTitle,
+  renderNotesEditable,
+  renderLatestNoteEditable,
+  enableNoteInputs,
+  disableNoteInputs,
 };
 import {
   taskLibrary,
   setEditFlag,
   setDateLimit,
   projectsArray,
+  notesLibrary,
+  setNoteEditFlag,
 } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
 
 function renderTasks() {
+  cleanAddNoteBtn();
+  if (document.querySelector(".note")) {
+    cleanNotes();
+  }
   cleanTasks();
   taskLibrary.forEach((item) => {
     createTask(item);
@@ -411,4 +425,212 @@ function createProject(projectName) {
   project.classList.toggle("project");
   projectItemContainer.appendChild(project);
   projectsContainer.appendChild(projectItemContainer);
+}
+
+//NOTES RELATED
+
+function renderNotes() {
+  if (document.querySelector(".task")) {
+    cleanTasks();
+  }
+  if (document.querySelectorAll(".add-note-btn")) {
+    cleanAddNoteBtn();
+  }
+  removeProjectHeader();
+  cleanNotes();
+  appendAddNoteBtn();
+  notesLibrary.forEach((item) => {
+    createNote(item);
+  });
+  disableAllNoteEditBtns();
+}
+
+function appendAddNoteBtn() {
+  const addBtn = document.createElement("button");
+  addBtn.classList.toggle("add-note-btn");
+  addBtn.textContent = "+";
+  tasksContainer.appendChild(addBtn);
+}
+
+function cleanAddNoteBtn() {
+  const addNoteBtn = document.querySelector(".add-note-btn");
+  if (addNoteBtn) {
+    tasksContainer.removeChild(addNoteBtn);
+  }
+}
+
+function cleanNotes() {
+  const notes = document.querySelectorAll(".note");
+  notes.forEach((note) => {
+    tasksContainer.removeChild(note);
+  });
+}
+
+function createNote(note) {
+  const noteElement = document.createElement("div");
+  noteElement.appendChild(createNoteEditBtn());
+  noteElement.appendChild(createNoteTitle(note));
+  noteElement.appendChild(createNoteDeleteBtn());
+  noteElement.appendChild(createNoteDescription(note));
+  noteElement.classList.toggle("note");
+  tasksContainer.appendChild(noteElement);
+}
+
+function createNoteTitle(note) {
+  const noteTitleContainer = document.createElement("div");
+  const noteTitle = document.createElement("input");
+  noteTitle.setAttribute("value", note.noteTitle);
+  noteTitle.classList.toggle("note-title");
+  noteTitle.disabled = true;
+  noteTitleContainer.appendChild(noteTitle);
+  return noteTitleContainer;
+}
+
+function createNoteDoneBtn() {
+  const doneBtn = document.createElement("button");
+  doneBtn.textContent = "✅";
+  doneBtn.classList.toggle("note-done-btn");
+  doneBtn.classList.add("note-editing");
+  return doneBtn;
+}
+
+function createNoteEditBtn() {
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "🖉";
+  editBtn.classList.toggle("note-edit-btn");
+  editBtn.classList.add("note-editing");
+  return editBtn;
+}
+
+function createNoteDeleteBtn() {
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "🗑";
+  deleteBtn.classList.toggle("note-delete-btn");
+  return deleteBtn;
+}
+
+function createNoteDescription(note) {
+  const noteDescriptionContainer = document.createElement("div");
+  const noteDescription = document.createElement("textarea");
+  noteDescription.innerHTML = note.noteDescription;
+  noteDescription.setAttribute("rows", "3");
+  noteDescription.setAttribute("cols", "20");
+  noteDescription.disabled = true;
+  noteDescription.classList.toggle("note-description");
+  noteDescriptionContainer.appendChild(noteDescription);
+  return noteDescriptionContainer;
+}
+
+function swapNoteBtns(btn) {
+  btn.classList.contains("note-done-btn")
+    ? swapNoteDoneBtn(btn)
+    : swapNoteEditBtn(btn);
+}
+
+function swapNoteDoneBtn(doneBtn) {
+  const note = doneBtn.closest(".note");
+  doneBtn.remove();
+  note.prepend(createNoteEditBtn());
+}
+
+function swapNoteEditBtn(editBtn) {
+  const note = editBtn.closest(".note");
+  editBtn.remove();
+  note.prepend(createNoteDoneBtn());
+}
+
+function renderNotesEditable() {
+  const notes = document.querySelectorAll(".note");
+  notes.forEach((note, index) => {
+    const noteBtn = note.querySelector(".note-editing");
+    if (notesLibrary[index].editFlag === true) {
+      if (note.querySelector(".note-edit-btn")) {
+        swapNoteBtns(noteBtn);
+      }
+    } else if (notesLibrary[index].editFlag === false) {
+      if (note.querySelector(".note-done-btn")) {
+        swapNoteBtns(noteBtn);
+      }
+    }
+  });
+}
+
+function renderLatestNoteEditable() {
+  const notes = document.querySelectorAll(".note");
+  let numberOfNotes = notes.length;
+  setNoteEditFlag(true, numberOfNotes - 1);
+}
+
+function enableNoteInputs() {
+  const notes = document.querySelectorAll(".note");
+  notes.forEach((note) => {
+    if (note.querySelector(".note-done-btn")) {
+      enableNoteInputElements(note);
+      enableNoteTextareaElements(note);
+    }
+  });
+}
+
+function disableNoteInputs() {
+  const notes = document.querySelectorAll(".note");
+  notes.forEach((note) => {
+    if (note.querySelector(".note-edit-btn")) {
+      disableNoteInputElements(note);
+      disableNoteTextAreaElements(note);
+    }
+  });
+}
+
+function enableNoteInputElements(note) {
+  let inputFields = note.querySelectorAll("input");
+  inputFields.forEach((input) => {
+    input.disabled = false;
+  });
+}
+
+function enableNoteTextareaElements(note) {
+  let inputFields = note.querySelectorAll("textarea");
+  inputFields.forEach((input) => {
+    input.disabled = false;
+  });
+}
+
+function disableNoteInputElements(note) {
+  let inputFields = note.querySelectorAll("input");
+  inputFields.forEach((input) => {
+    input.disabled = true;
+  });
+}
+
+function disableNoteTextAreaElements(note) {
+  let textAreaFields = note.querySelectorAll("textarea");
+  textAreaFields.forEach((textArea) => {
+    textArea.disabled = true;
+  });
+}
+
+function selectNoteTitle(note) {
+  const noteTitle = note.querySelector(".note-title");
+  noteTitle.select();
+}
+
+function deselectNoteTitle(note) {
+  const noteTitle = note.querySelector(".note-title");
+  noteTitle.focus();
+  noteTitle.setSelectionRange(0, 0);
+}
+
+function selectLatestNoteTitle() {
+  let numberOfNotes = notesLibrary.length;
+  const notes = document.querySelectorAll(".note");
+  const latestNoteElement = notes[numberOfNotes - 1];
+  selectNoteTitle(latestNoteElement);
+}
+
+function disableAllNoteEditBtns() {
+  const notes = document.querySelectorAll(".note");
+  notes.forEach((note) => {
+    const editBtn = note.querySelector(".note-edit-btn");
+    editBtn.disabled = true;
+  });
 }
