@@ -7,7 +7,6 @@ import {
   removeTemporaryTask,
   removeNote,
   notesLibrary,
-  removeAllNotes,
 } from "../barrel";
 
 export {

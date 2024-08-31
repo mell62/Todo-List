@@ -64,6 +64,5 @@ export {
   notesLibrary,
   addNote,
   removeNote,
-  removeAllNotes,
   setNoteEditFlag,
 } from "./components/notes.js";

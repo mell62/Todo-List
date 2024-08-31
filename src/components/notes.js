@@ -1,4 +1,4 @@
-export { notesLibrary, addNote, removeNote, removeAllNotes, setNoteEditFlag };
+export { notesLibrary, addNote, removeNote, setNoteEditFlag };
 
 let notesFactory = (title) => {
   let noteTitle = title;
@@ -18,10 +18,6 @@ function addNote(title) {
 
 function removeNote(index) {
   notesLibrary.splice(index, 1);
-}
-
-function removeAllNotes() {
-  notesLibrary.splice(0, notesLibrary.length);
 }
 
 function setAllEditFlagsFalse() {
