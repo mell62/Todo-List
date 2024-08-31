@@ -27,6 +27,9 @@ import {
   loadProjectTasks,
   createProjectHeader,
   removeProjectHeader,
+  renderProjectHeaderEditable,
+  enableProjectHeader,
+  disableProjectHeader,
   renderNotes,
   addNote,
   deleteNote,
@@ -165,6 +168,13 @@ tasksContainer.addEventListener("click", (event) => {
     renderTasksEditable();
     enableInputs();
     disableInputs();
+  } else if (
+    event.target.classList.contains("set-project-btn") ||
+    event.target.classList.contains("rename-project-btn")
+  ) {
+    renderProjectHeaderEditable();
+    enableProjectHeader();
+    disableProjectHeader();
   }
 });
 

@@ -12,6 +12,9 @@ export {
   reloadProjectInputs,
   createProjectHeader,
   removeProjectHeader,
+  renderProjectHeaderEditable,
+  enableProjectHeader,
+  disableProjectHeader,
   renderNotes,
   swapNoteBtns,
   selectLatestNoteTitle,
@@ -376,18 +379,16 @@ function createProjectHeader(projectName) {
   const tasksPane = document.querySelector(".tasks");
 
   const projectHeaderContainer = document.createElement("div");
-  const projectHeader = document.createElement("div");
-  const projectHeaderBtnContainer = document.createElement("div");
-  const renameProjectBtn = document.createElement("button");
+  const projectHeader = document.createElement("input");
 
   projectHeaderContainer.classList.toggle("project-header-container");
+  projectHeader.classList.toggle("project-header");
 
-  projectHeader.textContent = projectName;
-  renameProjectBtn.textContent = "🖉";
+  projectHeader.value = projectName;
+  projectHeader.disabled = true;
 
-  projectHeaderBtnContainer.appendChild(renameProjectBtn);
   projectHeaderContainer.appendChild(projectHeader);
-  projectHeaderContainer.appendChild(projectHeaderBtnContainer);
+  projectHeaderContainer.appendChild(createRenameProjectBtn());
   tasksPane.insertBefore(projectHeaderContainer, tasksPane.firstChild);
 }
 
@@ -396,6 +397,80 @@ function removeProjectHeader() {
   if (tasksPane.querySelector(".project-header-container")) {
     const projectHeader = tasksPane.querySelector(".project-header-container");
     projectHeader.remove();
+  }
+}
+
+function createRenameProjectBtn() {
+  const projectHeaderBtnContainer = document.createElement("div");
+  const renameProjectBtn = document.createElement("button");
+  renameProjectBtn.classList.toggle("rename-project-btn");
+  renameProjectBtn.classList.toggle("project-header-editing");
+  renameProjectBtn.textContent = "🖉";
+  projectHeaderBtnContainer.appendChild(renameProjectBtn);
+  return projectHeaderBtnContainer;
+}
+
+function createSetProjectBtn() {
+  const projectHeaderBtnContainer = document.createElement("div");
+  const setProjectBtn = document.createElement("button");
+  setProjectBtn.classList.toggle("set-project-btn");
+  setProjectBtn.classList.toggle("project-header-editing");
+  setProjectBtn.textContent = "✅";
+  projectHeaderBtnContainer.appendChild(setProjectBtn);
+  return projectHeaderBtnContainer;
+}
+
+function swapProjectHeaderBtn(btn) {
+  btn.classList.contains("set-project-btn")
+    ? swapSetProjectBtn(btn)
+    : swapRenameProjectBtn(btn);
+}
+
+function swapSetProjectBtn(setProjectBtnContainer) {
+  const parentContainer = setProjectBtnContainer.closest(
+    ".project-header-container"
+  );
+  setProjectBtnContainer.remove();
+  parentContainer.appendChild(createRenameProjectBtn());
+}
+
+function swapRenameProjectBtn(renameProjectBtnContainer) {
+  const parentContainer = renameProjectBtnContainer.closest(
+    ".project-header-container"
+  );
+  renameProjectBtnContainer.remove();
+  parentContainer.appendChild(createSetProjectBtn());
+}
+
+function renderProjectHeaderEditable() {
+  const projectContainer = document.querySelector(".project-header-container");
+  const projectHeaderBtn = projectContainer.querySelector(
+    ".project-header-editing"
+  );
+  if (projectContainer.querySelector(".rename-project-btn")) {
+    swapProjectHeaderBtn(projectHeaderBtn);
+  } else if (projectContainer.querySelector(".set-project-btn")) {
+    swapProjectHeaderBtn(projectHeaderBtn);
+  }
+}
+
+function enableProjectHeader() {
+  const projectHeaderContainer = document.querySelector(
+    ".project-header-container"
+  );
+  const projectHeader = document.querySelector(".project-header");
+  if (projectHeaderContainer.querySelector(".set-project-btn")) {
+    projectHeader.disabled = false;
+  }
+}
+
+function disableProjectHeader() {
+  const projectHeaderContainer = document.querySelector(
+    ".project-header-container"
+  );
+  const projectHeader = document.querySelector(".project-header");
+  if (projectHeaderContainer.querySelector(".rename-project-btn")) {
+    projectHeader.disabled = true;
   }
 }
 
