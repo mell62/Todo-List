@@ -30,6 +30,7 @@ import {
   renderProjectHeaderEditable,
   enableProjectHeader,
   disableProjectHeader,
+  saveProjectName,
   renderNotes,
   addNote,
   deleteNote,
@@ -248,6 +249,32 @@ taskBar.addEventListener("click", (event) => {
   }
 });
 
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("set-project-btn")) {
+  }
+});
+
+let oldProjectName;
+
+//Save project name
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("rename-project-btn")) {
+    const projectTitleElement = document.querySelector(".project-header");
+    oldProjectName = projectTitleElement.value;
+  }
+  if (event.target.classList.contains("set-project-btn")) {
+    const projectTitleElement = document.querySelector(".project-header");
+    let newProjectName = projectTitleElement.value;
+    console.log(oldProjectName);
+    saveProjectName(oldProjectName, newProjectName);
+  }
+});
+
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("set-project-btn")) {
+    renderProjects();
+  }
+});
 //NOTES RELATED
 
 notesBtn.addEventListener("click", renderNotes);

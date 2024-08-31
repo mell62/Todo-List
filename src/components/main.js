@@ -7,6 +7,7 @@ import {
   removeTemporaryTask,
   removeNote,
   notesLibrary,
+  projectsArray,
 } from "../barrel";
 
 export {
@@ -19,6 +20,7 @@ export {
   loadTodaysTasks,
   loadThisWeeksTasks,
   loadProjectTasks,
+  saveProjectName,
   deleteNote,
   saveNote,
   findNoteEditingStatus,
@@ -211,6 +213,11 @@ function loadProjectTasks(projectName) {
   projectTasks.forEach((task) => {
     taskLibrary.push(task);
   });
+}
+
+function saveProjectName(oldname, newName) {
+  let index = projectsArray.indexOf(oldname);
+  projectsArray[index] = newName;
 }
 
 // NOTES RELATED
