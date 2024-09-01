@@ -50,6 +50,7 @@ export {
   loadThisWeeksTasks,
   loadProjectTasks,
   saveProjectName,
+  updateProjectsInTaskLibrary,
   deleteNote,
   saveNote,
   findNoteEditingStatus,

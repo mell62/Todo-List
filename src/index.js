@@ -31,6 +31,7 @@ import {
   enableProjectHeader,
   disableProjectHeader,
   saveProjectName,
+  updateProjectsInTaskLibrary,
   renderNotes,
   addNote,
   deleteNote,
@@ -267,6 +268,7 @@ tasksContainer.addEventListener("click", (event) => {
     let newProjectName = projectTitleElement.value;
     console.log(oldProjectName);
     saveProjectName(oldProjectName, newProjectName);
+    updateProjectsInTaskLibrary(oldProjectName, newProjectName);
   }
 });
 

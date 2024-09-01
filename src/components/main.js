@@ -21,6 +21,7 @@ export {
   loadThisWeeksTasks,
   loadProjectTasks,
   saveProjectName,
+  updateProjectsInTaskLibrary,
   deleteNote,
   saveNote,
   findNoteEditingStatus,
@@ -215,9 +216,17 @@ function loadProjectTasks(projectName) {
   });
 }
 
-function saveProjectName(oldname, newName) {
-  let index = projectsArray.indexOf(oldname);
+function saveProjectName(oldName, newName) {
+  let index = projectsArray.indexOf(oldName);
   projectsArray[index] = newName;
+}
+
+function updateProjectsInTaskLibrary(oldName, newName) {
+  taskLibrary.forEach((task) => {
+    if (task.project === oldName) {
+      task.project = newName;
+    }
+  });
 }
 
 // NOTES RELATED
