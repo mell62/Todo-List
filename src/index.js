@@ -32,6 +32,7 @@ import {
   disableProjectHeader,
   saveProjectName,
   updateProjectsInTaskLibrary,
+  checkProjectExists,
   renderNotes,
   addNote,
   deleteNote,
@@ -266,9 +267,11 @@ tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("set-project-btn")) {
     const projectTitleElement = document.querySelector(".project-header");
     let newProjectName = projectTitleElement.value;
-    console.log(oldProjectName);
-    saveProjectName(oldProjectName, newProjectName);
-    updateProjectsInTaskLibrary(oldProjectName, newProjectName);
+    if (!checkProjectExists(newProjectName)) {
+      //Save project only if project does not already exist
+      saveProjectName(oldProjectName, newProjectName);
+      updateProjectsInTaskLibrary(oldProjectName, newProjectName);
+    }
   }
 });
 

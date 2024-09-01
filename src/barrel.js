@@ -51,6 +51,7 @@ export {
   loadProjectTasks,
   saveProjectName,
   updateProjectsInTaskLibrary,
+  checkProjectExists,
   deleteNote,
   saveNote,
   findNoteEditingStatus,

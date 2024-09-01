@@ -22,6 +22,7 @@ export {
   loadProjectTasks,
   saveProjectName,
   updateProjectsInTaskLibrary,
+  checkProjectExists,
   deleteNote,
   saveNote,
   findNoteEditingStatus,
@@ -227,6 +228,10 @@ function updateProjectsInTaskLibrary(oldName, newName) {
       task.project = newName;
     }
   });
+}
+
+function checkProjectExists(projectName) {
+  return projectsArray.some((project) => project === projectName);
 }
 
 // NOTES RELATED
