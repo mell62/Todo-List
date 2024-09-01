@@ -85,6 +85,7 @@ addBtn.addEventListener("click", renderLatestTaskEditable);
 addBtn.addEventListener("click", renderTasksEditable);
 addBtn.addEventListener("click", enableInputs);
 addBtn.addEventListener("click", selectLatestTaskTitle);
+addBtn.addEventListener("click", removeProjectHeader);
 
 //Delete temporary tasks
 tasksContainer.addEventListener("click", (event) => {
