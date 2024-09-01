@@ -277,6 +277,21 @@ tasksContainer.addEventListener("click", (event) => {
     renderProjects();
   }
 });
+
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("done-btn")) {
+    if (tasksContainer.querySelector(".project-header")) {
+      const projectTitleElement =
+        tasksContainer.querySelector(".project-header");
+      let projectTitle = projectTitleElement.value;
+      loadProjectTasks(projectTitle);
+      renderTasks();
+      renderTasksEditable();
+      enableInputs();
+    }
+  }
+});
+
 //NOTES RELATED
 
 notesBtn.addEventListener("click", renderNotes);
