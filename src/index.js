@@ -251,11 +251,6 @@ taskBar.addEventListener("click", (event) => {
   }
 });
 
-tasksContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("set-project-btn")) {
-  }
-});
-
 let oldProjectName;
 
 //Save project name
@@ -271,6 +266,8 @@ tasksContainer.addEventListener("click", (event) => {
       //Save project only if project does not already exist
       saveProjectName(oldProjectName, newProjectName);
       updateProjectsInTaskLibrary(oldProjectName, newProjectName);
+    } else {
+      projectTitleElement.value = oldProjectName;
     }
   }
 });
