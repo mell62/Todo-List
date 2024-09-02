@@ -552,6 +552,7 @@ function createNote(note) {
   noteElement.appendChild(createNoteDescription(note));
   noteElement.classList.toggle("note");
   tasksContainer.appendChild(noteElement);
+  scrollAuto(noteElement);
 }
 
 function createNoteTitle(note) {

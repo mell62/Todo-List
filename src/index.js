@@ -301,6 +301,7 @@ tasksContainer.addEventListener("click", (event) => {
 //NOTES RELATED
 
 notesBtn.addEventListener("click", renderNotes);
+notesBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
 
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("add-note-btn")) {
