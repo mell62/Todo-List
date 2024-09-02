@@ -40,6 +40,8 @@ export {
 } from "./components/task-library.js";
 
 export {
+  scrollAuto,
+  scrollToTop,
   deleteTask,
   deleteTemporaryTask,
   saveTask,

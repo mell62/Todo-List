@@ -2,6 +2,7 @@ import "./styles/style.css";
 import "./styles/modern-normalize.css";
 import {
   renderTasks,
+  scrollToTop,
   addTask,
   deleteTask,
   deleteTemporaryTask,
@@ -64,18 +65,21 @@ everythingBtn.addEventListener("click", renderTasks);
 everythingBtn.addEventListener("click", renderTasksEditable);
 everythingBtn.addEventListener("click", enableInputs);
 everythingBtn.addEventListener("click", removeProjectHeader);
+everythingBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
 
 todayBtn.addEventListener("click", loadTodaysTasks);
 todayBtn.addEventListener("click", renderTasks);
 todayBtn.addEventListener("click", renderTasksEditable);
 todayBtn.addEventListener("click", enableInputs);
 todayBtn.addEventListener("click", removeProjectHeader);
+todayBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
 
 upcomingBtn.addEventListener("click", loadThisWeeksTasks);
 upcomingBtn.addEventListener("click", renderTasks);
 upcomingBtn.addEventListener("click", renderTasksEditable);
 upcomingBtn.addEventListener("click", enableInputs);
 upcomingBtn.addEventListener("click", removeProjectHeader);
+upcomingBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
 
 // Add tasks
 addBtn.addEventListener("click", revertTaskLibrary);
@@ -249,6 +253,7 @@ taskBar.addEventListener("click", (event) => {
     renderTasks();
     renderTasksEditable();
     enableInputs();
+    scrollToTop(tasksContainer);
   }
 });
 

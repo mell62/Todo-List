@@ -26,6 +26,7 @@ export {
 };
 import {
   taskLibrary,
+  scrollAuto,
   setEditFlag,
   setDateLimit,
   projectsArray,
@@ -68,6 +69,7 @@ function createTask(task) {
   taskElement.appendChild(createFinishBtn());
   taskElement.classList.toggle("task");
   tasksContainer.appendChild(taskElement);
+  scrollAuto(taskElement);
 }
 
 function createTaskTitle(task) {

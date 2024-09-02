@@ -11,6 +11,8 @@ import {
 } from "../barrel";
 
 export {
+  scrollAuto,
+  scrollToTop,
   deleteTask,
   deleteTemporaryTask,
   saveTask,
@@ -27,6 +29,16 @@ export {
   saveNote,
   findNoteEditingStatus,
 };
+
+function scrollAuto(element) {
+  element.scrollIntoView({
+    behavior: "instant",
+  });
+}
+
+function scrollToTop(container) {
+  container.scrollTop = 0;
+}
 
 function deleteTask(btn) {
   if (btn.classList.contains("delete-btn")) {
