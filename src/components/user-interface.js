@@ -498,6 +498,7 @@ function createProject(projectName) {
   const project = document.createElement("button");
   project.textContent = projectName;
   project.classList.toggle("project");
+  project.classList.toggle("taskbar-btn");
   projectItemContainer.appendChild(project);
   projectsContainer.appendChild(projectItemContainer);
 }
