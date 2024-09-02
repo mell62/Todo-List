@@ -23,6 +23,7 @@ export {
   renderLatestNoteEditable,
   enableNoteInputs,
   disableNoteInputs,
+  activateTaskbarBtn,
 } from "./components/user-interface.js";
 
 export {

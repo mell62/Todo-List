@@ -23,6 +23,7 @@ export {
   renderLatestNoteEditable,
   enableNoteInputs,
   disableNoteInputs,
+  activateTaskbarBtn,
 };
 import {
   taskLibrary,
@@ -712,4 +713,22 @@ function disableAllNoteEditBtns() {
     const editBtn = note.querySelector(".note-edit-btn");
     editBtn.disabled = true;
   });
+}
+
+//STYLING
+
+function removeTaskbarBtnActivation() {
+  const taskbarBtns = document.querySelectorAll(".taskbar-btn");
+  taskbarBtns.forEach((btn) => {
+    btn.classList.remove("taskbar-btn-activate");
+  });
+}
+
+function addTaskbarBtnActivation(btn) {
+  btn.classList.add("taskbar-btn-activate");
+}
+
+function activateTaskbarBtn(btn) {
+  removeTaskbarBtnActivation();
+  addTaskbarBtnActivation(btn);
 }

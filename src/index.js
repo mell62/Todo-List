@@ -46,6 +46,7 @@ import {
   enableNoteInputs,
   disableNoteInputs,
   findNoteEditingStatus,
+  activateTaskbarBtn,
 } from "./barrel";
 
 renderTasks();
@@ -66,6 +67,10 @@ everythingBtn.addEventListener("click", renderTasksEditable);
 everythingBtn.addEventListener("click", enableInputs);
 everythingBtn.addEventListener("click", removeProjectHeader);
 everythingBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
+everythingBtn.addEventListener(
+  "click",
+  activateTaskbarBtn.bind(null, everythingBtn)
+);
 
 todayBtn.addEventListener("click", loadTodaysTasks);
 todayBtn.addEventListener("click", renderTasks);
@@ -73,6 +78,7 @@ todayBtn.addEventListener("click", renderTasksEditable);
 todayBtn.addEventListener("click", enableInputs);
 todayBtn.addEventListener("click", removeProjectHeader);
 todayBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
+todayBtn.addEventListener("click", activateTaskbarBtn.bind(null, todayBtn));
 
 upcomingBtn.addEventListener("click", loadThisWeeksTasks);
 upcomingBtn.addEventListener("click", renderTasks);
@@ -80,6 +86,10 @@ upcomingBtn.addEventListener("click", renderTasksEditable);
 upcomingBtn.addEventListener("click", enableInputs);
 upcomingBtn.addEventListener("click", removeProjectHeader);
 upcomingBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
+upcomingBtn.addEventListener(
+  "click",
+  activateTaskbarBtn.bind(null, upcomingBtn)
+);
 
 // Add tasks
 addBtn.addEventListener("click", revertTaskLibrary);
@@ -90,6 +100,7 @@ addBtn.addEventListener("click", renderTasksEditable);
 addBtn.addEventListener("click", enableInputs);
 addBtn.addEventListener("click", selectLatestTaskTitle);
 addBtn.addEventListener("click", removeProjectHeader);
+addBtn.addEventListener("click", activateTaskbarBtn.bind(null, everythingBtn));
 
 //Delete temporary tasks
 tasksContainer.addEventListener("click", (event) => {
@@ -254,6 +265,7 @@ taskBar.addEventListener("click", (event) => {
     renderTasksEditable();
     enableInputs();
     scrollToTop(tasksContainer);
+    activateTaskbarBtn(event.target);
   }
 });
 
@@ -302,6 +314,7 @@ tasksContainer.addEventListener("click", (event) => {
 
 notesBtn.addEventListener("click", renderNotes);
 notesBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
+notesBtn.addEventListener("click", activateTaskbarBtn.bind(null, notesBtn));
 
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("add-note-btn")) {
