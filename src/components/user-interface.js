@@ -24,6 +24,7 @@ export {
   enableNoteInputs,
   disableNoteInputs,
   activateTaskbarBtn,
+  addActivatedProjectStyle,
 };
 import {
   taskLibrary,
@@ -33,6 +34,7 @@ import {
   projectsArray,
   notesLibrary,
   setNoteEditFlag,
+  findActivatedProjectIndex,
 } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -514,6 +516,13 @@ function createProject(projectName) {
   project.classList.toggle("taskbar-btn");
   projectItemContainer.appendChild(project);
   projectsContainer.appendChild(projectItemContainer);
+}
+
+function addActivatedProjectStyle(index) {
+  const projectElements = document.querySelectorAll(".project");
+  if (index) {
+    projectElements[index - 1].classList.add("taskbar-btn-activate");
+  }
 }
 
 //NOTES RELATED

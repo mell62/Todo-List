@@ -24,6 +24,7 @@ export {
   enableNoteInputs,
   disableNoteInputs,
   activateTaskbarBtn,
+  addActivatedProjectStyle,
 } from "./components/user-interface.js";
 
 export {
@@ -59,6 +60,7 @@ export {
   saveNote,
   findNoteEditingStatus,
   deleteProject,
+  findActivatedProjectIndex,
 } from "./components/main.js";
 
 export {

@@ -30,6 +30,7 @@ export {
   saveNote,
   findNoteEditingStatus,
   deleteProject,
+  findActivatedProjectIndex,
 };
 
 function scrollAuto(element) {
@@ -257,6 +258,16 @@ function deleteProject(projectName) {
     taskLibrary.push(task);
   });
   removeProject(projectName);
+}
+
+function findActivatedProjectIndex() {
+  const projectElements = document.querySelectorAll(".project");
+  for (let index = 0; index < projectElements.length; index++) {
+    if (projectElements[index].classList.contains("taskbar-btn-activate")) {
+      return index + 1; //Should not return 0 as js understands it as falsy value
+    }
+  }
+  return false;
 }
 
 // NOTES RELATED

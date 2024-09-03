@@ -49,6 +49,8 @@ import {
   disableNoteInputs,
   findNoteEditingStatus,
   activateTaskbarBtn,
+  findActivatedProjectIndex,
+  addActivatedProjectStyle,
 } from "./barrel";
 
 renderTasks();
@@ -248,12 +250,21 @@ tasksContainer.addEventListener("click", (event) => {
 addProjectBtn.addEventListener("click", () => {
   let numberOfProjects = findNumberOfProjects();
   addProject(`Project #${numberOfProjects + 1}`);
+});
+
+addProjectBtn.addEventListener("click", () => {
+  let activatedProjectIndex = findActivatedProjectIndex();
   renderProjects();
+  addActivatedProjectStyle(activatedProjectIndex);
 });
 
 //Refresh projects list of inputs
 addProjectBtn.addEventListener("click", () => {
   reloadProjectInputs();
+});
+
+addProjectBtn.addEventListener("click", () => {
+  addActivatedProjectStyle();
 });
 
 taskBar.addEventListener("click", (event) => {
