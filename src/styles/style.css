@@ -86,6 +86,7 @@ body {
   grid-area: 1 / 1 / -1 / 2;
   background-color: var(--secondary);
   padding: 1rem 0 1rem 0;
+  overflow-y: auto;
 }
 
 .general-tasks,
