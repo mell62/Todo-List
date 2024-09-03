@@ -126,4 +126,20 @@ body {
 .add-task,
 .add-project-btn {
   border: 0.2rem solid var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.4rem 1rem 0.4rem 1rem;
+}
+
+.add-logo {
+  width: 2rem;
+  fill: var(--text);
+  transition: fill 0.2s ease-out, filter 0.2s ease-out;
+}
+
+.taskbar-btn:hover .add-logo {
+  fill: var(--primary);
+  filter: drop-shadow(0rem 0rem 0.1rem var(--primary));
 }
