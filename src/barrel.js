@@ -58,12 +58,15 @@ export {
   deleteNote,
   saveNote,
   findNoteEditingStatus,
+  deleteProject,
 } from "./components/main.js";
 
 export {
   projectsArray,
   addProject,
   findNumberOfProjects,
+  removeProject,
+  checkMoreThanOneProject,
 } from "./components/projects.js";
 
 export {

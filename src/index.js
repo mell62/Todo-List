@@ -23,6 +23,7 @@ import {
   loadThisWeeksTasks,
   renderProjects,
   addProject,
+  deleteProject,
   findNumberOfProjects,
   reloadProjectInputs,
   loadProjectTasks,
@@ -34,6 +35,7 @@ import {
   saveProjectName,
   updateProjectsInTaskLibrary,
   checkProjectExists,
+  checkMoreThanOneProject,
   renderNotes,
   addNote,
   deleteNote,
@@ -60,6 +62,8 @@ const upcomingBtn = document.querySelector(".upcoming-btn");
 const addProjectBtn = document.querySelector(".add-project-btn");
 const taskBar = document.querySelector(".taskbar");
 const notesBtn = document.querySelector(".notes-btn");
+
+activateTaskbarBtn(everythingBtn);
 
 everythingBtn.addEventListener("click", revertTaskLibrary);
 everythingBtn.addEventListener("click", renderTasks);
@@ -306,6 +310,24 @@ tasksContainer.addEventListener("click", (event) => {
       renderTasks();
       renderTasksEditable();
       enableInputs();
+    }
+  }
+});
+
+tasksContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete-project-btn")) {
+    const container = event.target.closest(".project-header-container");
+    const projectName = container.querySelector(".project-header").value;
+    if (checkMoreThanOneProject()) {
+      deleteProject(projectName);
+      renderProjects();
+      renderTasks();
+      renderTasksEditable();
+      enableInputs();
+      removeProjectHeader();
+      scrollToTop(tasksContainer);
+      reloadProjectInputs();
+      activateTaskbarBtn(everythingBtn);
     }
   }
 });

@@ -8,6 +8,7 @@ import {
   removeNote,
   notesLibrary,
   projectsArray,
+  removeProject,
 } from "../barrel";
 
 export {
@@ -28,6 +29,7 @@ export {
   deleteNote,
   saveNote,
   findNoteEditingStatus,
+  deleteProject,
 };
 
 function scrollAuto(element) {
@@ -244,6 +246,17 @@ function updateProjectsInTaskLibrary(oldName, newName) {
 
 function checkProjectExists(projectName) {
   return projectsArray.some((project) => project === projectName);
+}
+
+function deleteProject(projectName) {
+  revertTaskLibrary();
+  let tempArray = taskLibrary;
+  tempArray = tempArray.filter((task) => task.project !== projectName);
+  removeAllTasks();
+  tempArray.forEach((task) => {
+    taskLibrary.push(task);
+  });
+  removeProject(projectName);
 }
 
 // NOTES RELATED

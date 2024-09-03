@@ -392,6 +392,7 @@ function createProjectHeader(projectName) {
 
   projectHeaderContainer.appendChild(projectHeader);
   projectHeaderContainer.appendChild(createRenameProjectBtn());
+  projectHeaderContainer.appendChild(createDeleteProjectBtn());
   tasksPane.insertBefore(projectHeaderContainer, tasksPane.firstChild);
 }
 
@@ -421,6 +422,15 @@ function createSetProjectBtn() {
   setProjectBtn.textContent = "✅";
   projectHeaderBtnContainer.appendChild(setProjectBtn);
   return projectHeaderBtnContainer;
+}
+
+function createDeleteProjectBtn() {
+  const projectDeleteBtnContainer = document.createElement("div");
+  const deleteProjectBtn = document.createElement("button");
+  deleteProjectBtn.classList.toggle("delete-project-btn");
+  deleteProjectBtn.textContent = "🗑";
+  projectDeleteBtnContainer.appendChild(deleteProjectBtn);
+  return projectDeleteBtnContainer;
 }
 
 function swapProjectHeaderBtn(btn) {
