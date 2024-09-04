@@ -9,6 +9,7 @@
 body {
   background-color: var(--background);
   color: var(--text);
+  font-family: "Quicksand", sans-serif;
 }
 
 #content {
@@ -20,10 +21,20 @@ body {
 
 .hero {
   grid-area: 1 / 2 / 2 / 3;
+  padding: 1rem;
 }
 
 .hero-heading {
+  display: flex;
+  align-items: center;
   font-size: 1.5rem;
+  margin: 0;
+  font-family: "SUSE", sans-serif;
+}
+
+.page-logo {
+  fill: var(--tertiary);
+  width: 3rem;
 }
 
 .tasks {
