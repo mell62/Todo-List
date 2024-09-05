@@ -21,30 +21,36 @@ body {
 
 .hero {
   grid-area: 1 / 2 / 2 / 3;
-  padding: 1rem;
+  padding: 1rem 0rem 1rem 2rem;
+  border-bottom: 0.15rem solid var(--tertiary);
 }
 
 .hero-heading {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 0;
   font-family: "SUSE", sans-serif;
 }
 
+.hero-caption {
+  font-size: 1.1rem;
+}
+
 .page-logo {
   fill: var(--tertiary);
-  width: 3rem;
+  width: 3.3rem;
 }
 
 .tasks {
   grid-area: 2 / 2 / -1 / -1;
   background-color: var(--background);
   display: flex;
-  padding: 1rem;
+  padding: 2rem;
   flex-wrap: wrap;
   gap: 8rem;
   overflow-y: auto;
+  box-shadow: 0rem -0.1rem 1rem 0.1rem var(--primary) inset;
 }
 
 .task {
