@@ -4,12 +4,15 @@
   --primary: #d9d4e7;
   --secondary: #fec7d7;
   --tertiary: #a786df;
+  --hero-font: "SUSE", sans-serif;
+  --primary-font: "Quicksand", sans-serif;
+  --border-radius: 0.15rem;
 }
 
 body {
   background-color: var(--background);
   color: var(--text);
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--primary-font);
 }
 
 #content {
@@ -30,7 +33,7 @@ body {
   align-items: center;
   font-size: 1.7rem;
   margin: 0;
-  font-family: "SUSE", sans-serif;
+  font-family: var(--hero-font);
 }
 
 .hero-caption {
@@ -50,13 +53,98 @@ body {
   flex-wrap: wrap;
   gap: 8rem;
   overflow-y: auto;
-  box-shadow: 0rem -0.1rem 1rem 0.1rem var(--primary) inset;
+  box-shadow: 0.2rem 0.3rem 0.5rem 0.1rem var(--primary) inset;
 }
 
 .task {
   background-color: var(--primary);
   height: min-content;
+  width: 100%;
+  min-width: 35rem;
   padding: 1rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.task-first-section,
+.task-second-section,
+.task-third-section,
+.task-fourth-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.task-first-section {
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 3rem;
+}
+
+.task-second-section {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, minmax(10rem, 1fr)) minmax(5rem, 1fr);
+  width: 74rem;
+  gap: 1rem;
+}
+
+.task-third-section {
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-fourth-section {
+  width: 5rem;
+}
+
+.task-title,
+.project-field,
+.task-description,
+.date-picker,
+.priority-btn,
+.finish-task-btn {
+  border-radius: var(--border-radius);
+  border: 0.2rem solid var(--text);
+  padding: 0.2rem;
+}
+
+.task-title-container {
+  grid-column: span 2;
+}
+
+.task-title {
+  width: 100%;
+}
+
+.project-input-container {
+  grid-column: 3 / 4;
+}
+
+.project-field {
+  width: 100%;
+}
+
+.task-description-container {
+  grid-column: span 3;
+}
+
+.task-description {
+  width: 100%;
+}
+
+.date-picker {
+  width: 100%;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 1rem;
+  width: 3rem;
+  height: auto;
 }
 
 .edit-btn {
@@ -123,7 +211,7 @@ body {
   border: none;
   background-color: var(--secondary);
   padding: 1rem;
-  border-radius: 0.15rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: text-shadow 0.2s ease-out, background-color 0.2s ease-out;
 }
