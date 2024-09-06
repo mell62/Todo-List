@@ -62,21 +62,34 @@ function cleanTasks() {
 
 function createTask(task) {
   const taskElement = document.createElement("div");
-  taskElement.appendChild(createEditBtn());
-  taskElement.appendChild(createTaskTitle(task));
-  taskElement.appendChild(createProjectInput(task));
-  taskElement.appendChild(createDeleteBtn());
-  taskElement.appendChild(createTaskDescription(task));
-  taskElement.appendChild(createDatePicker(task));
-  taskElement.appendChild(createPriorities());
-  taskElement.appendChild(createFinishBtn());
+  const firstSection = document.createElement("div");
+  const secondSection = document.createElement("div");
+  const thirdSection = document.createElement("div");
+  const fourthSection = document.createElement("div");
   taskElement.classList.toggle("task");
+  firstSection.classList.toggle("task-first-section");
+  secondSection.classList.toggle("task-second-section");
+  thirdSection.classList.toggle("task-third-section");
+  fourthSection.classList.toggle("task-fourth-section");
+  firstSection.appendChild(createEditBtn());
+  firstSection.appendChild(createDeleteBtn());
+  secondSection.appendChild(createTaskTitle(task));
+  secondSection.appendChild(createProjectInput(task));
+  secondSection.appendChild(createTaskDescription(task));
+  thirdSection.appendChild(createDatePicker(task));
+  thirdSection.appendChild(createPriorities());
+  fourthSection.appendChild(createFinishBtn());
+  taskElement.appendChild(firstSection);
+  taskElement.appendChild(secondSection);
+  taskElement.appendChild(thirdSection);
+  taskElement.appendChild(fourthSection);
   tasksContainer.appendChild(taskElement);
   scrollAuto(taskElement);
 }
 
 function createTaskTitle(task) {
   const taskTitleContainer = document.createElement("div");
+  taskTitleContainer.classList.toggle("task-title-container");
   const taskTitle = document.createElement("input");
   taskTitle.setAttribute("value", task.taskTitle);
   taskTitle.classList.toggle("task-title");
@@ -87,9 +100,9 @@ function createTaskTitle(task) {
 
 function createProjectInput(task) {
   const projectInputContainer = document.createElement("div");
+  projectInputContainer.classList.toggle("project-input-container");
   const projectInput = document.createElement("select");
   projectInput.classList.toggle("project-field");
-  projectInput.setAttribute("style", "width: 8rem");
   projectsArray.forEach((project) => {
     const projectOption = document.createElement("option");
     projectOption.setAttribute("value", project);
@@ -127,6 +140,7 @@ function createDeleteBtn() {
 
 function createTaskDescription(task) {
   const taskDescriptionContainer = document.createElement("div");
+  taskDescriptionContainer.classList.toggle("task-description-container");
   const taskDescription = document.createElement("textarea");
   taskDescription.innerHTML = task.taskDescription;
   taskDescription.setAttribute("placeholder", "Describe your task...");
@@ -140,6 +154,7 @@ function createTaskDescription(task) {
 
 function createDatePicker(task) {
   const datePickerContainer = document.createElement("div");
+  datePickerContainer.classList.toggle("date-picker-container");
   const datePicker = document.createElement("input");
   datePicker.setAttribute("type", "date");
   datePicker.setAttribute("value", task.dueDate);
