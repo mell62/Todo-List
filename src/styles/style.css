@@ -273,7 +273,8 @@ label[for="task-duedate"],
   opacity: 1;
 }
 
-.add-task {
+.add-task,
+.add-note-btn {
   height: min-content;
   padding: 1rem;
 }
@@ -409,7 +410,8 @@ label[for="task-duedate"],
 }
 
 .add-task,
-.add-project-btn {
+.add-project-btn,
+.add-note-btn {
   border: 0.2rem solid var(--text);
   display: flex;
   justify-content: center;
@@ -421,13 +423,35 @@ label[for="task-duedate"],
   margin-bottom: 1rem;
 }
 
-.add-logo {
+.add-note-btn {
+  appearance: none;
+  border: none;
+  background-color: var(--background);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: text-shadow 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.add-note-btn:hover {
+  background-color: var(--text);
+  color: var(--primary);
+  text-shadow: 0rem 0rem 0.1rem var(--primary);
+}
+
+.add-logo,
+.add-note-logo {
   width: 2rem;
   fill: var(--text);
   transition: fill 0.2s ease-out, filter 0.2s ease-out;
 }
 
 .taskbar-btn:hover .add-logo {
+  fill: var(--primary);
+  filter: drop-shadow(0rem 0rem 0.1rem var(--primary));
+}
+
+.add-note-btn:hover .add-note-logo {
   fill: var(--primary);
   filter: drop-shadow(0rem 0rem 0.1rem var(--primary));
 }
