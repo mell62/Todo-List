@@ -208,15 +208,17 @@ function swapBtns(btn) {
 }
 
 function swapDoneBtn(doneBtn) {
-  const task = doneBtn.closest(".task");
+  const container = doneBtn.closest(".task-first-section");
+  const deleteBtn = container.querySelector(".delete-btn");
   doneBtn.remove();
-  task.prepend(createEditBtn());
+  container.insertBefore(createEditBtn(), deleteBtn);
 }
 
 function swapEditBtn(editBtn) {
-  const task = editBtn.closest(".task");
+  const container = editBtn.closest(".task-first-section");
+  const deleteBtn = container.querySelector(".delete-btn");
   editBtn.remove();
-  task.prepend(createDoneBtn());
+  container.insertBefore(createDoneBtn(), deleteBtn);
 }
 
 function renderTasksEditable() {

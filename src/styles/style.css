@@ -141,7 +141,8 @@ body {
 }
 
 .edit-btn,
-.delete-btn {
+.delete-btn,
+.done-btn {
   padding: 1rem;
   width: 3rem;
   height: auto;
@@ -161,7 +162,7 @@ body {
 }
 
 .priority-styling {
-  border: 3px solid black;
+  border: 3px solid var(--tertiary);
 }
 
 .note {
