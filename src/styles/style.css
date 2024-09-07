@@ -113,6 +113,7 @@ body {
   border-radius: var(--border-radius);
   border: 0.2rem solid var(--text);
   padding: 0.2rem;
+  color: var(--text);
 }
 
 label[for="task-title"],
@@ -239,6 +240,19 @@ label[for="task-duedate"],
 
 .priority-styling {
   border: 3px solid var(--tertiary);
+}
+
+.high-priority-btn:disabled,
+.medium-priority-btn:disabled,
+.low-priority-btn:disabled {
+  display: none;
+}
+
+.high-priority-btn:disabled.priority-styling,
+.medium-priority-btn:disabled.priority-styling,
+.low-priority-btn:disabled.priority-styling {
+  display: block;
+  border: 0.15rem solid var(--primary);
 }
 
 .note {
