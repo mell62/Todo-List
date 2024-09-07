@@ -456,17 +456,16 @@ label[for="task-duedate"],
 .add-note-btn {
   appearance: none;
   border: none;
-  background-color: var(--background);
+  background-color: transparent;
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: text-shadow 0.2s ease-out, background-color 0.2s ease-out;
+  transition: text-shadow 0.2s ease-out, background-color 0.2s ease-out,
+    transform 0.2s ease-out;
 }
 
 .add-note-btn:hover {
-  background-color: var(--text);
-  color: var(--primary);
-  text-shadow: 0rem 0rem 0.1rem var(--primary);
+  transform: scale(1.1);
 }
 
 .add-logo,
@@ -482,6 +481,5 @@ label[for="task-duedate"],
 }
 
 .add-note-btn:hover .add-note-logo {
-  fill: var(--primary);
-  filter: drop-shadow(0rem 0rem 0.1rem var(--primary));
+  transform: scale(1.1);
 }
