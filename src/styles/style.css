@@ -87,7 +87,7 @@ body {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: repeat(2, minmax(10rem, 1fr)) minmax(5rem, 1fr);
-  width: 74rem;
+  width: 70rem;
   gap: 1rem;
 }
 
@@ -99,7 +99,9 @@ body {
 }
 
 .task-fourth-section {
-  width: 5rem;
+  width: 9rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-title,
@@ -160,7 +162,8 @@ body {
 
 .edit-btn,
 .delete-btn,
-.done-btn {
+.done-btn,
+.finish-task-btn {
   padding: 1rem;
   width: 2rem;
   height: 2rem;
@@ -190,10 +193,24 @@ body {
   background-size: cover;
 }
 
+.finish-task-btn {
+  font-family: var(--hero-font), sans-serif;
+  font-size: 1.2rem;
+  width: 60%;
+  border: 0.15rem solid var(--primary);
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+}
+
 .delete-btn:hover,
 .edit-btn:hover,
-.done-btn:hover {
+.done-btn:hover,
+.finish-task-btn:hover {
   transform: scale(1.1);
+}
+
+.finish-task-btn:hover {
+  background-color: var(--background);
+  border: 0.15rem solid var(--text);
 }
 
 .task:hover .edit-btn {

@@ -220,7 +220,7 @@ function createFinishBtn() {
 
   finishBtn.classList.toggle("finish-task-btn");
 
-  finishBtn.textContent = "Finish Task";
+  finishBtn.textContent = "Finish!";
 
   return finishBtn;
 }
