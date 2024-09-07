@@ -51,7 +51,7 @@ body {
   display: flex;
   padding: 2rem;
   flex-wrap: wrap;
-  gap: 8rem;
+  gap: 2rem;
   overflow-y: auto;
   box-shadow: 0.2rem 0.3rem 0.5rem 0.1rem var(--primary) inset;
 }
@@ -251,6 +251,10 @@ label[for="task-duedate"],
 
 .priority-styling {
   border: 0.15rem solid var(--tertiary);
+}
+
+.high-priority-btn:disabled {
+  font-weight: bold;
 }
 
 .high-priority-btn:enabled,
