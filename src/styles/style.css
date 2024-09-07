@@ -56,7 +56,8 @@ body {
   box-shadow: 0.2rem 0.3rem 0.5rem 0.1rem var(--primary) inset;
 }
 
-.task {
+.task,
+.note {
   background-color: var(--primary);
   height: min-content;
   width: 100%;
@@ -109,7 +110,9 @@ body {
 .task-description,
 .date-picker,
 .priority-btn,
-.finish-task-btn {
+.finish-task-btn,
+.note-title,
+.note-description {
   border-radius: 0.4rem;
   border: 0.15rem solid var(--text);
   padding: 0.2rem;
@@ -137,6 +140,11 @@ label[for="task-duedate"],
   height: 2rem;
 }
 
+.task-description,
+.note-description {
+  resize: none;
+}
+
 .task-title-container {
   grid-column: span 2;
 }
@@ -145,7 +153,8 @@ label[for="task-duedate"],
   width: 100%;
 }
 
-.task-title:disabled {
+.task-title:disabled,
+.note-title:disabled {
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -153,7 +162,9 @@ label[for="task-duedate"],
 .task-title:disabled,
 .project-field:disabled,
 .task-description:disabled,
-.date-picker:disabled {
+.date-picker:disabled,
+.note-title:disabled,
+.note-description:disabled {
   border: 0.15rem solid var(--primary);
   background-color: var(--primary);
 }
@@ -188,7 +199,10 @@ label[for="task-duedate"],
 .finish-task-btn,
 .rename-project-btn,
 .set-project-btn,
-.delete-project-btn {
+.delete-project-btn,
+.note-edit-btn,
+.note-done-btn,
+.note-delete-btn {
   padding: 1rem;
   width: 2rem;
   height: 2rem;
@@ -200,7 +214,8 @@ label[for="task-duedate"],
   transition: transform 0.2s ease-out;
 }
 
-.edit-btn {
+.edit-btn,
+.note-edit-btn {
   opacity: 0;
   background-image: url(../images/edit-logo.svg);
   background-size: 1.7rem 1.7rem;
@@ -208,12 +223,14 @@ label[for="task-duedate"],
   background-position: center;
 }
 
-.delete-btn {
+.delete-btn,
+.note-delete-btn {
   background-image: url(../images/delete-logo.svg);
   background-size: cover;
 }
 
-.done-btn {
+.done-btn,
+.note-done-btn {
   background-image: url(../images/done-logo.svg);
   background-size: cover;
 }
@@ -260,7 +277,10 @@ label[for="task-duedate"],
 .finish-task-btn:hover,
 .rename-project-btn:hover,
 .set-project-btn:hover,
-.delete-project-btn:hover {
+.delete-project-btn:hover,
+.note-delete-btn:hover,
+.note-edit-btn:hover,
+.note-done-btn:hover {
   transform: scale(1.1);
 }
 
@@ -346,9 +366,19 @@ label[for="task-duedate"],
 }
 
 .note {
-  background-color: var(--background);
-  height: min-content;
-  padding: 1rem;
+  width: min-content;
+  flex-direction: column;
+  min-width: 10rem;
+}
+
+.note-title-container,
+.note-description-container {
+  width: 20rem;
+}
+
+.note-title,
+.note-description {
+  width: 100%;
 }
 
 .note-edit-btn {

@@ -620,8 +620,8 @@ function cleanNotes() {
 function createNote(note) {
   const noteElement = document.createElement("div");
   noteElement.appendChild(createNoteEditBtn());
-  noteElement.appendChild(createNoteTitle(note));
   noteElement.appendChild(createNoteDeleteBtn());
+  noteElement.appendChild(createNoteTitle(note));
   noteElement.appendChild(createNoteDescription(note));
   noteElement.classList.toggle("note");
   tasksContainer.appendChild(noteElement);
@@ -634,13 +634,13 @@ function createNoteTitle(note) {
   noteTitle.setAttribute("value", note.noteTitle);
   noteTitle.classList.toggle("note-title");
   noteTitle.disabled = true;
+  noteTitleContainer.classList.toggle("note-title-container");
   noteTitleContainer.appendChild(noteTitle);
   return noteTitleContainer;
 }
 
 function createNoteDoneBtn() {
   const doneBtn = document.createElement("button");
-  doneBtn.textContent = "✅";
   doneBtn.classList.toggle("note-done-btn");
   doneBtn.classList.add("note-editing");
   return doneBtn;
@@ -648,7 +648,6 @@ function createNoteDoneBtn() {
 
 function createNoteEditBtn() {
   const editBtn = document.createElement("button");
-  editBtn.textContent = "🖉";
   editBtn.classList.toggle("note-edit-btn");
   editBtn.classList.add("note-editing");
   return editBtn;
@@ -656,7 +655,6 @@ function createNoteEditBtn() {
 
 function createNoteDeleteBtn() {
   const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "🗑";
   deleteBtn.classList.toggle("note-delete-btn");
   return deleteBtn;
 }
@@ -667,8 +665,10 @@ function createNoteDescription(note) {
   noteDescription.innerHTML = note.noteDescription;
   noteDescription.setAttribute("rows", "3");
   noteDescription.setAttribute("cols", "20");
+  noteDescription.setAttribute("placeholder", "Describe your note...");
   noteDescription.disabled = true;
   noteDescription.classList.toggle("note-description");
+  noteDescriptionContainer.classList.toggle("note-description-container");
   noteDescriptionContainer.appendChild(noteDescription);
   return noteDescriptionContainer;
 }
