@@ -113,12 +113,29 @@ body {
   padding: 0.2rem;
 }
 
+.task-title,
+.project-field,
+.date-picker {
+  height: 2rem;
+}
+
 .task-title-container {
   grid-column: span 2;
 }
 
 .task-title {
   width: 100%;
+}
+
+.task-title:disabled,
+.project-field:disabled,
+.task-description:disabled {
+  border: 0.2rem solid var(--primary);
+  background-color: var(--primary);
+}
+
+.project-field:disabled {
+  appearance: none;
 }
 
 .project-input-container {
