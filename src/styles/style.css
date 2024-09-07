@@ -110,10 +110,16 @@ body {
 .date-picker,
 .priority-btn,
 .finish-task-btn {
-  border-radius: var(--border-radius);
-  border: 0.2rem solid var(--text);
+  border-radius: 0.4rem;
+  border: 0.15rem solid var(--text);
   padding: 0.2rem;
   color: var(--text);
+  background-color: var(--background);
+}
+
+.date-picker:enabled,
+.project-field:enabled {
+  cursor: pointer;
 }
 
 label[for="task-title"],
@@ -148,7 +154,7 @@ label[for="task-duedate"],
 .project-field:disabled,
 .task-description:disabled,
 .date-picker:disabled {
-  border: 0.2rem solid var(--primary);
+  border: 0.15rem solid var(--primary);
   background-color: var(--primary);
 }
 
@@ -238,8 +244,28 @@ label[for="task-duedate"],
   padding: 1rem;
 }
 
+.priority-btn-container {
+  display: flex;
+  gap: 0.2rem;
+}
+
 .priority-styling {
-  border: 3px solid var(--tertiary);
+  border: 0.15rem solid var(--tertiary);
+}
+
+.high-priority-btn:enabled,
+.medium-priority-btn:enabled,
+.low-priority-btn:enabled {
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+.high-priority-btn:enabled:hover,
+.medium-priority-btn:enabled:hover,
+.low-priority-btn:enabled:hover {
+  background-color: var(--text);
+  color: var(--background);
 }
 
 .high-priority-btn:disabled,
@@ -253,6 +279,7 @@ label[for="task-duedate"],
 .low-priority-btn:disabled.priority-styling {
   display: block;
   border: 0.15rem solid var(--primary);
+  background-color: var(--primary);
 }
 
 .note {

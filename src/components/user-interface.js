@@ -34,7 +34,6 @@ import {
   projectsArray,
   notesLibrary,
   setNoteEditFlag,
-  findActivatedProjectIndex,
 } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -183,6 +182,7 @@ function createDatePicker(task) {
 
 function createPriorities() {
   const priorityContainer = document.createElement("div");
+  const priorityBtnContainer = document.createElement("div");
   const highPriorityBtn = document.createElement("button");
   const mediumPriorityBtn = document.createElement("button");
   const lowPriorityBtn = document.createElement("button");
@@ -207,10 +207,14 @@ function createPriorities() {
   priorityLabel.classList.toggle("priority-label");
   priorityLabel.textContent = "Priority";
 
+  priorityContainer.classList.toggle("priority-container");
+  priorityBtnContainer.classList.toggle("priority-btn-container");
+
+  priorityBtnContainer.appendChild(highPriorityBtn);
+  priorityBtnContainer.appendChild(mediumPriorityBtn);
+  priorityBtnContainer.appendChild(lowPriorityBtn);
   priorityContainer.appendChild(priorityLabel);
-  priorityContainer.appendChild(highPriorityBtn);
-  priorityContainer.appendChild(mediumPriorityBtn);
-  priorityContainer.appendChild(lowPriorityBtn);
+  priorityContainer.appendChild(priorityBtnContainer);
 
   return priorityContainer;
 }
