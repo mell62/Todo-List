@@ -79,6 +79,7 @@ body {
 .task-first-section {
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 1rem;
   width: 3rem;
 }
 
@@ -144,12 +145,38 @@ body {
 .delete-btn,
 .done-btn {
   padding: 1rem;
-  width: 3rem;
+  width: 2rem;
+  height: 2rem;
   height: auto;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
 }
 
 .edit-btn {
   opacity: 0;
+  background-image: url(../images/edit-logo.svg);
+  background-size: 1.7rem 1.7rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete-btn {
+  background-image: url(../images/delete-logo.svg);
+  background-size: cover;
+}
+
+.done-btn {
+  background-image: url(../images/done-logo.svg);
+  background-size: cover;
+}
+
+.delete-btn:hover,
+.edit-btn:hover,
+.done-btn:hover {
+  transform: scale(1.1);
 }
 
 .task:hover .edit-btn {
