@@ -117,7 +117,6 @@ function createProjectInput(task) {
 
 function createDoneBtn() {
   const doneBtn = document.createElement("button");
-  doneBtn.textContent = "✅";
   doneBtn.classList.toggle("done-btn");
   doneBtn.classList.add("task-editing");
   return doneBtn;
@@ -125,7 +124,6 @@ function createDoneBtn() {
 
 function createEditBtn() {
   const editBtn = document.createElement("button");
-  editBtn.textContent = "🖉";
   editBtn.classList.toggle("edit-btn");
   editBtn.classList.add("task-editing");
   return editBtn;
@@ -133,7 +131,6 @@ function createEditBtn() {
 
 function createDeleteBtn() {
   const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "🗑";
   deleteBtn.classList.toggle("delete-btn");
   return deleteBtn;
 }
