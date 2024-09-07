@@ -87,7 +87,7 @@ body {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: repeat(2, minmax(10rem, 1fr)) minmax(5rem, 1fr);
-  width: 70rem;
+  width: 68rem;
   gap: 1rem;
 }
 
@@ -185,7 +185,10 @@ label[for="task-duedate"],
 .edit-btn,
 .delete-btn,
 .done-btn,
-.finish-task-btn {
+.finish-task-btn,
+.rename-project-btn,
+.set-project-btn,
+.delete-project-btn {
   padding: 1rem;
   width: 2rem;
   height: 2rem;
@@ -215,6 +218,34 @@ label[for="task-duedate"],
   background-size: cover;
 }
 
+.rename-project-btn,
+.set-project-btn,
+.delete-project-btn {
+  background-image: url(../images/edit-logo.svg);
+  background-size: 1.3rem 1.3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.set-project-btn {
+  background-image: url(../images/done-logo.svg);
+  background-size: 1.3rem 1.3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete-project-btn {
+  background-image: url(../images/delete-logo.svg);
+  background-size: 1.3rem 1.3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.project-header-btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .finish-task-btn {
   font-family: var(--hero-font), sans-serif;
   font-size: 1.2rem;
@@ -226,7 +257,10 @@ label[for="task-duedate"],
 .delete-btn:hover,
 .edit-btn:hover,
 .done-btn:hover,
-.finish-task-btn:hover {
+.finish-task-btn:hover,
+.rename-project-btn:hover,
+.set-project-btn:hover,
+.delete-project-btn:hover {
   transform: scale(1.1);
 }
 
@@ -284,6 +318,30 @@ label[for="task-duedate"],
   display: block;
   border: 0.15rem solid var(--primary);
   background-color: var(--primary);
+}
+
+.project-header-container {
+  width: 100%;
+  height: min-content;
+}
+
+.project-header:disabled {
+  border: 0.15rem solid var(--background);
+  background-color: var(--background);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text);
+  height: 2.2rem;
+  width: 100%;
+}
+
+.project-header:enabled {
+  border: 0.15rem solid var(--text);
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  background-color: var(--background);
+  color: var(--text);
+  height: 2.2rem;
 }
 
 .note {
