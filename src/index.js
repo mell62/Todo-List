@@ -247,6 +247,12 @@ tasksContainer.addEventListener("click", (event) => {
   }
 });
 
+tasksContainer.addEventListener("mouseover", (event) => {
+  if (event.target.classList.contains("edit-btn") && !findTaskEditingStatus()) {
+    event.target.disabled = false;
+  }
+});
+
 addProjectBtn.addEventListener("click", () => {
   let numberOfProjects = findNumberOfProjects();
   addProject(`Project #${numberOfProjects + 1}`);
