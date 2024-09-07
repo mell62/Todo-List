@@ -91,9 +91,14 @@ function createTaskTitle(task) {
   const taskTitleContainer = document.createElement("div");
   taskTitleContainer.classList.toggle("task-title-container");
   const taskTitle = document.createElement("input");
+  const taskTitleLabel = document.createElement("label");
   taskTitle.setAttribute("value", task.taskTitle);
   taskTitle.classList.toggle("task-title");
+  taskTitle.id = "task-title";
   taskTitle.disabled = true;
+  taskTitleLabel.setAttribute("for", "task-title");
+  taskTitleLabel.textContent = "Task";
+  taskTitleContainer.appendChild(taskTitleLabel);
   taskTitleContainer.appendChild(taskTitle);
   return taskTitleContainer;
 }
@@ -102,7 +107,9 @@ function createProjectInput(task) {
   const projectInputContainer = document.createElement("div");
   projectInputContainer.classList.toggle("project-input-container");
   const projectInput = document.createElement("select");
+  const projectInputLabel = document.createElement("label");
   projectInput.classList.toggle("project-field");
+  projectInput.id = "task-project";
   projectsArray.forEach((project) => {
     const projectOption = document.createElement("option");
     projectOption.setAttribute("value", project);
@@ -111,6 +118,9 @@ function createProjectInput(task) {
   });
   projectInput.value = task.project;
   projectInput.disabled = true;
+  projectInputLabel.setAttribute("for", "task-project");
+  projectInputLabel.textContent = "Project";
+  projectInputContainer.appendChild(projectInputLabel);
   projectInputContainer.appendChild(projectInput);
   return projectInputContainer;
 }
@@ -139,12 +149,17 @@ function createTaskDescription(task) {
   const taskDescriptionContainer = document.createElement("div");
   taskDescriptionContainer.classList.toggle("task-description-container");
   const taskDescription = document.createElement("textarea");
+  const taskDescriptionLabel = document.createElement("label");
   taskDescription.innerHTML = task.taskDescription;
   taskDescription.setAttribute("placeholder", "Describe your task...");
   taskDescription.setAttribute("rows", "3");
   taskDescription.setAttribute("cols", "20");
+  taskDescription.id = "task-description";
   taskDescription.disabled = true;
   taskDescription.classList.toggle("task-description");
+  taskDescriptionLabel.setAttribute("for", "task-description");
+  taskDescriptionLabel.textContent = "Description";
+  taskDescriptionContainer.appendChild(taskDescriptionLabel);
   taskDescriptionContainer.appendChild(taskDescription);
   return taskDescriptionContainer;
 }
@@ -153,10 +168,15 @@ function createDatePicker(task) {
   const datePickerContainer = document.createElement("div");
   datePickerContainer.classList.toggle("date-picker-container");
   const datePicker = document.createElement("input");
+  const datePickerLabel = document.createElement("label");
   datePicker.setAttribute("type", "date");
   datePicker.setAttribute("value", task.dueDate);
   datePicker.classList.toggle("date-picker");
   datePicker.disabled = true;
+  datePicker.id = "task-duedate";
+  datePickerLabel.setAttribute("for", "task-duedate");
+  datePickerLabel.textContent = "Due:";
+  datePickerContainer.appendChild(datePickerLabel);
   datePickerContainer.appendChild(datePicker);
   return datePickerContainer;
 }
@@ -166,6 +186,7 @@ function createPriorities() {
   const highPriorityBtn = document.createElement("button");
   const mediumPriorityBtn = document.createElement("button");
   const lowPriorityBtn = document.createElement("button");
+  const priorityLabel = document.createElement("div");
 
   highPriorityBtn.classList.toggle("high-priority-btn");
   mediumPriorityBtn.classList.toggle("medium-priority-btn");
@@ -183,6 +204,10 @@ function createPriorities() {
   mediumPriorityBtn.disabled = true;
   lowPriorityBtn.disabled = true;
 
+  priorityLabel.classList.toggle("priority-label");
+  priorityLabel.textContent = "Priority";
+
+  priorityContainer.appendChild(priorityLabel);
   priorityContainer.appendChild(highPriorityBtn);
   priorityContainer.appendChild(mediumPriorityBtn);
   priorityContainer.appendChild(lowPriorityBtn);
