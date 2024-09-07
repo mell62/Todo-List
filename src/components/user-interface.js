@@ -427,17 +427,20 @@ function createProjectHeader(projectName) {
   const tasksPane = document.querySelector(".tasks");
 
   const projectHeaderContainer = document.createElement("div");
+  const projectHeaderBtnContainer = document.createElement("div");
   const projectHeader = document.createElement("input");
 
   projectHeaderContainer.classList.toggle("project-header-container");
+  projectHeaderBtnContainer.classList.toggle("project-header-btn-container");
   projectHeader.classList.toggle("project-header");
 
   projectHeader.value = projectName;
   projectHeader.disabled = true;
 
   projectHeaderContainer.appendChild(projectHeader);
-  projectHeaderContainer.appendChild(createRenameProjectBtn());
-  projectHeaderContainer.appendChild(createDeleteProjectBtn());
+  projectHeaderBtnContainer.appendChild(createRenameProjectBtn());
+  projectHeaderBtnContainer.appendChild(createDeleteProjectBtn());
+  projectHeaderContainer.appendChild(projectHeaderBtnContainer);
   tasksPane.insertBefore(projectHeaderContainer, tasksPane.firstChild);
 }
 
@@ -450,32 +453,23 @@ function removeProjectHeader() {
 }
 
 function createRenameProjectBtn() {
-  const projectHeaderBtnContainer = document.createElement("div");
   const renameProjectBtn = document.createElement("button");
   renameProjectBtn.classList.toggle("rename-project-btn");
   renameProjectBtn.classList.toggle("project-header-editing");
-  renameProjectBtn.textContent = "🖉";
-  projectHeaderBtnContainer.appendChild(renameProjectBtn);
-  return projectHeaderBtnContainer;
+  return renameProjectBtn;
 }
 
 function createSetProjectBtn() {
-  const projectHeaderBtnContainer = document.createElement("div");
   const setProjectBtn = document.createElement("button");
   setProjectBtn.classList.toggle("set-project-btn");
   setProjectBtn.classList.toggle("project-header-editing");
-  setProjectBtn.textContent = "✅";
-  projectHeaderBtnContainer.appendChild(setProjectBtn);
-  return projectHeaderBtnContainer;
+  return setProjectBtn;
 }
 
 function createDeleteProjectBtn() {
-  const projectDeleteBtnContainer = document.createElement("div");
   const deleteProjectBtn = document.createElement("button");
   deleteProjectBtn.classList.toggle("delete-project-btn");
-  deleteProjectBtn.textContent = "🗑";
-  projectDeleteBtnContainer.appendChild(deleteProjectBtn);
-  return projectDeleteBtnContainer;
+  return deleteProjectBtn;
 }
 
 function swapProjectHeaderBtn(btn) {
@@ -486,18 +480,22 @@ function swapProjectHeaderBtn(btn) {
 
 function swapSetProjectBtn(setProjectBtnContainer) {
   const parentContainer = setProjectBtnContainer.closest(
-    ".project-header-container"
+    ".project-header-btn-container"
   );
-  setProjectBtnContainer.remove();
-  parentContainer.appendChild(createRenameProjectBtn());
+  parentContainer.replaceChild(
+    createRenameProjectBtn(),
+    setProjectBtnContainer
+  );
 }
 
 function swapRenameProjectBtn(renameProjectBtnContainer) {
   const parentContainer = renameProjectBtnContainer.closest(
-    ".project-header-container"
+    ".project-header-btn-container"
   );
-  renameProjectBtnContainer.remove();
-  parentContainer.appendChild(createSetProjectBtn());
+  parentContainer.replaceChild(
+    createSetProjectBtn(),
+    renameProjectBtnContainer
+  );
 }
 
 function renderProjectHeaderEditable() {
