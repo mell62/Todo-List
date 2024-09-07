@@ -115,6 +115,15 @@ body {
   padding: 0.2rem;
 }
 
+label[for="task-title"],
+label[for="task-project"],
+label[for="task-description"],
+label[for="task-duedate"],
+.priority-label {
+  font-weight: bold;
+  padding-left: 0.4rem;
+}
+
 .task-title,
 .project-field,
 .date-picker {
@@ -129,9 +138,15 @@ body {
   width: 100%;
 }
 
+.task-title:disabled {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 .task-title:disabled,
 .project-field:disabled,
-.task-description:disabled {
+.task-description:disabled,
+.date-picker:disabled {
   border: 0.2rem solid var(--primary);
   background-color: var(--primary);
 }
