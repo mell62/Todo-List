@@ -32,8 +32,8 @@ import {
   setEditFlag,
   setDateLimit,
   projectsArray,
-  notesLibrary,
   setNoteEditFlag,
+  getNotes,
 } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -572,13 +572,13 @@ function renderNotes() {
   if (document.querySelector(".task")) {
     cleanTasks();
   }
-  if (document.querySelectorAll(".add-note-btn")) {
+  if (document.querySelector(".add-note-btn")) {
     cleanAddNoteBtn();
   }
   removeProjectHeader();
   cleanNotes();
   appendAddNoteBtn();
-  notesLibrary.forEach((item) => {
+  getNotes().forEach((item) => {
     createNote(item);
   });
   disableAllNoteEditBtns();
@@ -695,11 +695,11 @@ function renderNotesEditable() {
   const notes = document.querySelectorAll(".note");
   notes.forEach((note, index) => {
     const noteBtn = note.querySelector(".note-editing");
-    if (notesLibrary[index].editFlag === true) {
+    if (getNotes()[index].editFlag === true) {
       if (note.querySelector(".note-edit-btn")) {
         swapNoteBtns(noteBtn);
       }
-    } else if (notesLibrary[index].editFlag === false) {
+    } else if (getNotes()[index].editFlag === false) {
       if (note.querySelector(".note-done-btn")) {
         swapNoteBtns(noteBtn);
       }
@@ -773,7 +773,7 @@ function deselectNoteTitle(note) {
 }
 
 function selectLatestNoteTitle() {
-  let numberOfNotes = notesLibrary.length;
+  let numberOfNotes = getNotes().length;
   const notes = document.querySelectorAll(".note");
   const latestNoteElement = notes[numberOfNotes - 1];
   selectNoteTitle(latestNoteElement);

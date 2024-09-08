@@ -1,3 +1,5 @@
+import { storageAvailable } from "./components/storage.js";
+
 export {
   renderTasks,
   swapBtns,
@@ -30,6 +32,7 @@ export {
 export {
   taskFactory,
   taskLibrary,
+  temporaryTaskLibrary,
   addTask,
   removeTask,
   setEditFlag,
@@ -77,3 +80,9 @@ export {
   removeNote,
   setNoteEditFlag,
 } from "./components/notes.js";
+
+export {
+  storageAvailable,
+  storeNotes,
+  getNotes,
+} from "./components/storage.js";

@@ -9,6 +9,8 @@ import {
   notesLibrary,
   projectsArray,
   removeProject,
+  storeNotes,
+  getNotes,
 } from "../barrel";
 
 export {
@@ -285,8 +287,9 @@ function saveNote(doneBtn, newTitle, noteDescription) {
   const doneBtnIndex = Array.prototype.indexOf.call(doneBtns, doneBtn);
   notesLibrary[doneBtnIndex].noteTitle = newTitle;
   notesLibrary[doneBtnIndex].noteDescription = noteDescription;
+  storeNotes(notesLibrary);
 }
 
 function findNoteEditingStatus() {
-  return notesLibrary.some((note) => note.editFlag);
+  return getNotes().some((note) => note.editFlag);
 }

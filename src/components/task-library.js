@@ -1,6 +1,7 @@
 export {
   taskFactory,
   taskLibrary,
+  temporaryTaskLibrary,
   addTask,
   removeTask,
   removeTemporaryTask,
@@ -11,6 +12,8 @@ export {
   removeAllTemporaryTasks,
   revertTaskLibrary,
 };
+
+// import { storageAvailable } from "../barrel";
 
 let taskFactory = (title) => {
   let taskTitle = title;
@@ -34,9 +37,16 @@ let taskFactory = (title) => {
 };
 
 let defaultTask = taskFactory("Sample task");
-
 let taskLibrary = [defaultTask];
 let temporaryTaskLibrary = [];
+
+// if (storageAvailable()) {
+//   localStorage.setItem("taskLibrary", JSON.stringify(taskLibrary));
+//   localStorage.setItem(
+//     "temporaryTaskLibrary",
+//     JSON.stringify(temporaryTaskLibrary)
+//   );
+// }
 
 function addTask(title) {
   let newTask = taskFactory(title);
