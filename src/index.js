@@ -72,6 +72,7 @@ const addProjectBtn = document.querySelector(".add-project-btn");
 const taskBar = document.querySelector(".taskbar");
 const notesBtn = document.querySelector(".notes-btn");
 
+scrollToTop(tasksContainer);
 activateTaskbarBtn(everythingBtn);
 
 everythingBtn.addEventListener("click", revertTaskLibrary);
@@ -84,6 +85,7 @@ everythingBtn.addEventListener(
   "click",
   activateTaskbarBtn.bind(null, everythingBtn)
 );
+everythingBtn.click(); //To load alltasks by default upon reload
 
 todayBtn.addEventListener("click", loadTodaysTasks);
 todayBtn.addEventListener("click", renderTasks);
