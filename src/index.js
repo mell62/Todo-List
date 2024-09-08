@@ -356,7 +356,10 @@ notesBtn.addEventListener("click", scrollToTop.bind(null, tasksContainer));
 notesBtn.addEventListener("click", activateTaskbarBtn.bind(null, notesBtn));
 
 tasksContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("add-note-btn")) {
+  if (
+    event.target.classList.contains("add-note-btn") ||
+    event.target.closest(".add-note-btn")
+  ) {
     addNote("New Note");
     renderNotes();
     renderLatestNoteEditable();
