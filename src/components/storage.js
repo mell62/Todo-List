@@ -9,6 +9,9 @@ function storageAvailable() {
     storage.removeItem(x);
     return true;
   } catch (e) {
+    alert(
+      "Please enable local storage or disable private browsing in your browser to use this application!"
+    );
     return (
       e instanceof DOMException &&
       e.name === "QuotaExceededError" &&
@@ -37,10 +40,15 @@ function storeNotes(notesLibrary) {
 
 function getNotes() {
   if (storageAvailable()) {
-    if (JSON.parse(localStorage.getItem("notesLibrary"))) {
-      return JSON.parse(localStorage.getItem("notesLibrary"));
-    } else {
-      return [];
-    }
+    return JSON.parse(localStorage.getItem("notesLibrary"));
+  } else {
+    return [
+      {
+        noteTitle: "Please enable your storage",
+        noteDescription:
+          "Please go to your browser settings and enable local storage to proceed with using this application. Or disable private browsing.",
+        editFlag: false,
+      },
+    ];
   }
 }
