@@ -137,6 +137,7 @@ tasksContainer.addEventListener("click", (event) => {
     renderTasks();
     renderTasksEditable();
     enableInputs();
+    scrollToTop(tasksContainer);
   }
 });
 
