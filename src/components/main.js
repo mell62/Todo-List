@@ -291,5 +291,5 @@ function saveNote(doneBtn, newTitle, noteDescription) {
 }
 
 function findNoteEditingStatus() {
-  return getNotes().some((note) => note.editFlag);
+  return (getNotes() || notesLibrary).some((note) => note.editFlag);
 }

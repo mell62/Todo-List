@@ -9,9 +9,6 @@ function storageAvailable() {
     storage.removeItem(x);
     return true;
   } catch (e) {
-    alert(
-      "Please enable local storage or disable private browsing in your browser to use this application!"
-    );
     return (
       e instanceof DOMException &&
       e.name === "QuotaExceededError" &&
@@ -25,10 +22,55 @@ function storageAvailable() {
 // function storeTasks() {
 //   if (storageAvailable()) {
 //     localStorage.setItem("taskLibrary", JSON.stringify(taskLibrary));
-//     localStorage.setItem(
-//       "temporaryTaskLibrary",
-//       JSON.stringify(temporaryTaskLibrary)
-//     );
+//   }
+// }
+
+// function storeTemporaryTasks() {
+//   localStorage.setItem(
+//     "temporaryTaskLibrary",
+//     JSON.stringify(temporaryTaskLibrary)
+//   );
+// }
+
+// function getTasks() {
+//   if (storageAvailable()) {
+//     return JSON.parse(localStorage.getItem("taskLibrary"));
+//   } else {
+//     return [
+//       {
+//         taskTitle: "Please enable your storage",
+//         project: "Enable Storage",
+//         editFlag: false,
+//         dueDate: new Date(),
+//         taskDescription:
+//           "Please go to your browser settings and enable local storage to proceed with using this application. Or disable private browsing.",
+//         highPriority: true,
+//         mediumPriority: false,
+//         lowPriority: false,
+//       },
+//     ];
+//   }
+// }
+
+// function getTemporaryTasks() {
+//   function getTasks() {
+//     if (storageAvailable()) {
+//       return JSON.parse(localStorage.getItem("temporaryTaskLibrary"));
+//     } else {
+//       return [
+//         {
+//           taskTitle: "Please enable your storage",
+//           project: "Enable Storage",
+//           editFlag: false,
+//           dueDate: new Date(),
+//           taskDescription:
+//             "Please go to your browser settings and enable local storage to proceed with using this application. Or disable private browsing.",
+//           highPriority: true,
+//           mediumPriority: false,
+//           lowPriority: false,
+//         },
+//       ];
+//     }
 //   }
 // }
 
@@ -41,14 +83,5 @@ function storeNotes(notesLibrary) {
 function getNotes() {
   if (storageAvailable()) {
     return JSON.parse(localStorage.getItem("notesLibrary"));
-  } else {
-    return [
-      {
-        noteTitle: "Please enable your storage",
-        noteDescription:
-          "Please go to your browser settings and enable local storage to proceed with using this application. Or disable private browsing.",
-        editFlag: false,
-      },
-    ];
   }
 }
