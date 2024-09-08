@@ -51,7 +51,14 @@ import {
   activateTaskbarBtn,
   findActivatedProjectIndex,
   addActivatedProjectStyle,
+  storageAvailable,
 } from "./barrel";
+
+if (!storageAvailable()) {
+  alert(
+    "Please enable local storage in your browser or exit private browsing to proceed with using this application."
+  );
+}
 
 renderTasks();
 renderProjects();
