@@ -11,6 +11,10 @@ import {
   removeProject,
   storeNotes,
   getNotes,
+  storeTasks,
+  getTasks,
+  storeProjects,
+  getProjects,
 } from "../barrel";
 
 export {
@@ -61,12 +65,12 @@ function deleteTemporaryTask(btn) {
   if (btn.classList.contains("delete-btn")) {
     const deleteBtns = document.querySelectorAll(".delete-btn");
     const deleteBtnIndex = Array.prototype.indexOf.call(deleteBtns, btn);
-    const task = taskLibrary[deleteBtnIndex];
+    const task = (getTasks() || taskLibrary)[deleteBtnIndex];
     removeTemporaryTask(task);
   } else if (btn.classList.contains("finish-task-btn")) {
     const finishBtns = document.querySelectorAll(".finish-task-btn");
     const finishBtnIndex = Array.prototype.indexOf.call(finishBtns, btn);
-    const task = taskLibrary[finishBtnIndex];
+    const task = (getTasks() || taskLibrary)[finishBtnIndex];
     removeTemporaryTask(task);
   }
 }
@@ -78,6 +82,7 @@ function saveTask(doneBtn, newTitle, project, dueDate, taskDescription) {
   taskLibrary[doneBtnIndex].project = project;
   taskLibrary[doneBtnIndex].dueDate = dueDate;
   taskLibrary[doneBtnIndex].taskDescription = taskDescription;
+  storeTasks(taskLibrary);
 }
 
 function formatDate(date) {
@@ -109,19 +114,19 @@ function setDateLimit() {
 }
 
 function findTaskEditingStatus() {
-  return taskLibrary.some((task) => task.editFlag);
+  return (getTasks() || taskLibrary).some((task) => task.editFlag);
 }
 
 function findHighPriorityTasks() {
-  return taskLibrary.filter((task) => task.highPriority);
+  return (getTasks() || taskLibrary).filter((task) => task.highPriority);
 }
 
 function findMediumPriorityTasks() {
-  return taskLibrary.filter((task) => task.mediumPriority);
+  return (getTasks() || taskLibrary).filter((task) => task.mediumPriority);
 }
 
 function findLowPriorityTasks() {
-  return taskLibrary.filter((task) => task.lowPriority);
+  return (getTasks() || taskLibrary).filter((task) => task.lowPriority);
 }
 
 function sortHighPriorityTasks() {
@@ -151,18 +156,21 @@ function sortLowPriorityTasks() {
 function pushHighPriorityTasks(highPriorityTasks) {
   highPriorityTasks.forEach((task) => {
     taskLibrary.push(task);
+    storeTasks(taskLibrary);
   });
 }
 
 function pushMediumPriorityTasks(mediumPriorityTasks) {
   mediumPriorityTasks.forEach((task) => {
     taskLibrary.push(task);
+    storeTasks(taskLibrary);
   });
 }
 
 function pushLowPriorityTasks(lowPriorityTasks) {
   lowPriorityTasks.forEach((task) => {
     taskLibrary.push(task);
+    storeTasks(taskLibrary);
   });
 }
 function sortTaskLibrary() {
@@ -181,7 +189,7 @@ function findTodaysTasks() {
   todaysDate = formatDate(todaysDate);
   revertTaskLibrary();
 
-  const todaysTasks = taskLibrary.filter((task) => {
+  const todaysTasks = (getTasks() || taskLibrary).filter((task) => {
     let taskDate = task.dueDate;
     return taskDate === todaysDate;
   });
@@ -195,6 +203,7 @@ function loadTodaysTasks() {
   todaysTasks.forEach((task) => {
     taskLibrary.push(task);
   });
+  storeTasks(taskLibrary);
 }
 
 function findThisWeeksTasks() {
@@ -204,7 +213,7 @@ function findThisWeeksTasks() {
   let nextWeek = new Date(todaysDate);
   nextWeek.setDate(todaysDate.getDate() + 7);
   revertTaskLibrary();
-  let thisWeeksTasks = taskLibrary.filter((task) => {
+  let thisWeeksTasks = (getTasks() || taskLibrary).filter((task) => {
     let thisDate = new Date(task.dueDate);
     return thisDate >= todaysDate && thisDate <= nextWeek;
   });
@@ -218,11 +227,14 @@ function loadThisWeeksTasks() {
   thisWeeksTasks.forEach((task) => {
     taskLibrary.push(task);
   });
+  storeTasks(taskLibrary);
 }
 
 function findProjectTasks(projectName) {
   revertTaskLibrary();
-  let projectTasks = taskLibrary.filter((task) => task.project === projectName);
+  let projectTasks = (getTasks() || taskLibrary).filter(
+    (task) => task.project === projectName
+  );
   return projectTasks;
 }
 
@@ -232,15 +244,17 @@ function loadProjectTasks(projectName) {
   projectTasks.forEach((task) => {
     taskLibrary.push(task);
   });
+  storeTasks(taskLibrary);
 }
 
 function saveProjectName(oldName, newName) {
-  let index = projectsArray.indexOf(oldName);
-  projectsArray[index] = newName;
+  let index = (getProjects() || projectsArray).indexOf(oldName);
+  (getProjects() || projectsArray)[index] = newName;
+  storeProjects();
 }
 
 function updateProjectsInTaskLibrary(oldName, newName) {
-  taskLibrary.forEach((task) => {
+  (getTasks() || taskLibrary).forEach((task) => {
     if (task.project === oldName) {
       task.project = newName;
     }
@@ -248,17 +262,20 @@ function updateProjectsInTaskLibrary(oldName, newName) {
 }
 
 function checkProjectExists(projectName) {
-  return projectsArray.some((project) => project === projectName);
+  return (getProjects() || projectsArray).some(
+    (project) => project === projectName
+  );
 }
 
 function deleteProject(projectName) {
   revertTaskLibrary();
-  let tempArray = taskLibrary;
+  let tempArray = getTasks() || taskLibrary;
   tempArray = tempArray.filter((task) => task.project !== projectName);
   removeAllTasks();
   tempArray.forEach((task) => {
     taskLibrary.push(task);
   });
+  storeTasks(taskLibrary);
   removeProject(projectName);
 }
 

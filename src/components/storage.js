@@ -1,4 +1,14 @@
-export { storageAvailable, storeNotes, getNotes };
+export {
+  storageAvailable,
+  storeNotes,
+  getNotes,
+  storeTasks,
+  getTasks,
+  storeTemporaryTasks,
+  getTemporaryTasks,
+  storeProjects,
+  getProjects,
+};
 
 function storageAvailable() {
   let storage;
@@ -19,60 +29,44 @@ function storageAvailable() {
   }
 }
 
-// function storeTasks() {
-//   if (storageAvailable()) {
-//     localStorage.setItem("taskLibrary", JSON.stringify(taskLibrary));
-//   }
-// }
+function storeTasks(taskLibrary) {
+  if (storageAvailable()) {
+    localStorage.setItem("taskLibrary", JSON.stringify(taskLibrary));
+  }
+}
 
-// function storeTemporaryTasks() {
-//   localStorage.setItem(
-//     "temporaryTaskLibrary",
-//     JSON.stringify(temporaryTaskLibrary)
-//   );
-// }
+function storeTemporaryTasks(temporaryTaskLibrary) {
+  if (storageAvailable()) {
+    localStorage.setItem(
+      "temporaryTaskLibrary",
+      JSON.stringify(temporaryTaskLibrary)
+    );
+  }
+}
 
-// function getTasks() {
-//   if (storageAvailable()) {
-//     return JSON.parse(localStorage.getItem("taskLibrary"));
-//   } else {
-//     return [
-//       {
-//         taskTitle: "Please enable your storage",
-//         project: "Enable Storage",
-//         editFlag: false,
-//         dueDate: new Date(),
-//         taskDescription:
-//           "Please go to your browser settings and enable local storage to proceed with using this application. Or disable private browsing.",
-//         highPriority: true,
-//         mediumPriority: false,
-//         lowPriority: false,
-//       },
-//     ];
-//   }
-// }
+function getTasks() {
+  if (storageAvailable()) {
+    return JSON.parse(localStorage.getItem("taskLibrary"));
+  }
+}
 
-// function getTemporaryTasks() {
-//   function getTasks() {
-//     if (storageAvailable()) {
-//       return JSON.parse(localStorage.getItem("temporaryTaskLibrary"));
-//     } else {
-//       return [
-//         {
-//           taskTitle: "Please enable your storage",
-//           project: "Enable Storage",
-//           editFlag: false,
-//           dueDate: new Date(),
-//           taskDescription:
-//             "Please go to your browser settings and enable local storage to proceed with using this application. Or disable private browsing.",
-//           highPriority: true,
-//           mediumPriority: false,
-//           lowPriority: false,
-//         },
-//       ];
-//     }
-//   }
-// }
+function getTemporaryTasks() {
+  if (storageAvailable()) {
+    return JSON.parse(localStorage.getItem("temporaryTaskLibrary"));
+  }
+}
+
+function storeProjects(projectsArray) {
+  if (storageAvailable()) {
+    localStorage.setItem("projectsArray", JSON.stringify(projectsArray));
+  }
+}
+
+function getProjects() {
+  if (storageAvailable()) {
+    return JSON.parse(localStorage.getItem("projectsArray"));
+  }
+}
 
 function storeNotes(notesLibrary) {
   if (storageAvailable()) {

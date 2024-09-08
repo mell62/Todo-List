@@ -1,3 +1,10 @@
+import {
+  getTasks,
+  getTemporaryTasks,
+  storeTasks,
+  storeTemporaryTasks,
+} from "../barrel";
+
 export {
   taskFactory,
   taskLibrary,
@@ -37,51 +44,50 @@ let taskFactory = (title) => {
 };
 
 let defaultTask = taskFactory("Sample task");
-let taskLibrary = [defaultTask];
-let temporaryTaskLibrary = [];
-
-// if (storageAvailable()) {
-//   localStorage.setItem("taskLibrary", JSON.stringify(taskLibrary));
-//   localStorage.setItem(
-//     "temporaryTaskLibrary",
-//     JSON.stringify(temporaryTaskLibrary)
-//   );
-// }
+let taskLibrary = getTasks() || [defaultTask];
+let temporaryTaskLibrary = getTemporaryTasks() || [];
 
 function addTask(title) {
   let newTask = taskFactory(title);
   taskLibrary.push(newTask);
+  storeTasks(taskLibrary);
 }
 
 function removeTask(index) {
   taskLibrary.splice(index, 1);
+  storeTasks(taskLibrary);
 }
 
 function removeTemporaryTask(task) {
-  let taskIndex = temporaryTaskLibrary.indexOf(task);
+  let taskIndex = (getTemporaryTasks() || temporaryTaskLibrary).indexOf(task);
   if (taskIndex !== -1) {
     temporaryTaskLibrary.splice(taskIndex, 1);
+    storeTemporaryTasks(temporaryTaskLibrary);
   }
 }
 
 function removeAllTasks() {
   taskLibrary.splice(0, taskLibrary.length);
+  storeTasks(taskLibrary);
 }
 
 function removeAllTemporaryTasks() {
   temporaryTaskLibrary.splice(0, temporaryTaskLibrary.length);
+  storeTemporaryTasks(temporaryTaskLibrary);
 }
 
 function setAllEditFlagsFalse() {
   taskLibrary.forEach((task) => {
     task.editFlag = false;
   });
+  storeTasks(taskLibrary);
 }
 
 function setEditFlag(state, index) {
   if (typeof state === "boolean") {
     setAllEditFlagsFalse();
     taskLibrary[index].editFlag = state;
+    storeTasks(taskLibrary);
   }
 }
 
@@ -89,11 +95,13 @@ function setPrioritiesFalse(index) {
   taskLibrary[index].highPriority = false;
   taskLibrary[index].mediumPriority = false;
   taskLibrary[index].lowPriority = false;
+  storeTasks(taskLibrary);
 }
 
 function togglePriority(priority, index) {
   setPrioritiesFalse(index); //To set other priorities as false
   taskLibrary[index][priority] = !taskLibrary[index][priority];
+  storeTasks(taskLibrary);
 }
 
 function moveAllTasks() {
@@ -101,9 +109,11 @@ function moveAllTasks() {
     if (!temporaryTaskLibrary.includes(task)) {
       //Check to prevent duplicating tasks
       temporaryTaskLibrary.push(task);
+      storeTemporaryTasks(temporaryTaskLibrary);
     }
   });
   removeAllTasks();
+  storeTasks(taskLibrary);
 }
 
 function revertTaskLibrary() {
@@ -114,5 +124,7 @@ function revertTaskLibrary() {
       taskLibrary.push(task);
     });
     removeAllTemporaryTasks();
+    storeTasks(taskLibrary);
+    storeTemporaryTasks(temporaryTaskLibrary);
   }
 }

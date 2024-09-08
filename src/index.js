@@ -56,7 +56,7 @@ import {
 
 if (!storageAvailable()) {
   alert(
-    "Please enable local storage in your browser or exit private browsing to proceed with using this application."
+    "Please enable local storage in your browser or exit private browsing to proceed with using this application effectively."
   );
 }
 

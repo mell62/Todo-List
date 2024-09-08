@@ -35,6 +35,8 @@ import {
   setNoteEditFlag,
   getNotes,
   notesLibrary,
+  getTasks,
+  getProjects,
 } from "../barrel";
 
 const tasksContainer = document.querySelector(".tasks");
@@ -45,7 +47,7 @@ function renderTasks() {
     cleanNotes();
   }
   cleanTasks();
-  taskLibrary.forEach((item) => {
+  (getTasks() || taskLibrary).forEach((item) => {
     createTask(item);
   });
   setDateLimit();
@@ -110,7 +112,7 @@ function createProjectInput(task) {
   const projectInputLabel = document.createElement("label");
   projectInput.classList.toggle("project-field");
   projectInput.id = "task-project";
-  projectsArray.forEach((project) => {
+  (getProjects() || projectsArray).forEach((project) => {
     const projectOption = document.createElement("option");
     projectOption.setAttribute("value", project);
     projectOption.textContent = project;
@@ -252,11 +254,11 @@ function renderTasksEditable() {
   const tasks = document.querySelectorAll(".task");
   tasks.forEach((task, index) => {
     const taskBtn = task.querySelector(".task-editing");
-    if (taskLibrary[index].editFlag === true) {
+    if ((getTasks() || taskLibrary)[index].editFlag === true) {
       if (task.querySelector(".edit-btn")) {
         swapBtns(taskBtn);
       }
-    } else if (taskLibrary[index].editFlag === false) {
+    } else if ((getTasks() || taskLibrary)[index].editFlag === false) {
       if (task.querySelector(".done-btn")) {
         swapBtns(taskBtn);
       }
@@ -362,7 +364,7 @@ function deselectTaskTitle(task) {
 }
 
 function selectLatestTaskTitle() {
-  let numberOfTasks = taskLibrary.length;
+  let numberOfTasks = (getTasks() || taskLibrary).length;
   const tasks = document.querySelectorAll(".task");
   const latestTaskElement = tasks[numberOfTasks - 1];
   selectTaskTitle(latestTaskElement);
@@ -375,15 +377,15 @@ function setPriorityStyling() {
     let mediumPriorityBtn = task.querySelector(".medium-priority-btn");
     let lowPriorityBtn = task.querySelector(".low-priority-btn");
 
-    taskLibrary[index].highPriority
+    (getTasks() || taskLibrary)[index].highPriority
       ? highPriorityBtn.classList.add("priority-styling")
       : highPriorityBtn.classList.remove("priority-styling");
 
-    taskLibrary[index].mediumPriority
+    (getTasks() || taskLibrary)[index].mediumPriority
       ? mediumPriorityBtn.classList.add("priority-styling")
       : mediumPriorityBtn.classList.remove("priority-styling");
 
-    taskLibrary[index].lowPriority
+    (getTasks() || taskLibrary)[index].lowPriority
       ? lowPriorityBtn.classList.add("priority-styling")
       : lowPriorityBtn.classList.remove("priority-styling");
   });
@@ -414,7 +416,7 @@ function removeAllProjectInputs(task) {
 
 function loadAllProjectInputs(task) {
   const projectInput = task.querySelector(".project-field");
-  projectsArray.forEach((project) => {
+  (getProjects() || projectsArray).forEach((project) => {
     const projectOption = document.createElement("option");
     projectOption.setAttribute("value", project);
     projectOption.textContent = project;
@@ -537,7 +539,7 @@ const projectsContainer = document.querySelector(".projects-todo");
 
 function renderProjects() {
   cleanProjects();
-  projectsArray.forEach((project) => {
+  (getProjects() || projectsArray).forEach((project) => {
     createProject(project);
   });
 }

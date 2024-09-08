@@ -85,4 +85,10 @@ export {
   storageAvailable,
   storeNotes,
   getNotes,
+  storeTasks,
+  getTasks,
+  storeTemporaryTasks,
+  getTemporaryTasks,
+  storeProjects,
+  getProjects,
 } from "./components/storage.js";

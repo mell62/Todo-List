@@ -1,3 +1,5 @@
+import { getProjects, storeProjects } from "../barrel";
+
 export {
   projectsArray,
   addProject,
@@ -6,23 +8,25 @@ export {
   checkMoreThanOneProject,
 };
 
-let projectsArray = ["General"];
+let projectsArray = getProjects() || ["General"];
 
 function addProject(projectName) {
   projectsArray.push(projectName);
+  storeProjects(projectsArray);
 }
 
 function findNumberOfProjects() {
-  return projectsArray.length;
+  return (getProjects() || projectsArray).length;
 }
 
 function removeProject(projectName) {
-  let index = projectsArray.indexOf(projectName);
+  let index = (getProjects() || projectsArray).indexOf(projectName);
   projectsArray.splice(index, 1);
+  storeProjects(projectsArray);
 }
 
 function checkMoreThanOneProject() {
-  if (projectsArray.length > 1) {
+  if ((getProjects() || projectsArray).length > 1) {
     return true;
   } else {
     return false;
