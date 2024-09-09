@@ -29,6 +29,7 @@ Check it out :point_right:[here!](https://mell62.github.io/todo-list/):point_lef
 
 - Delete or rename projects at one go
 - Due dates prior to today cannot be selected
+- Works even when local storage is disabled within the browser
 
 ## :page_with_curl: Note
 
